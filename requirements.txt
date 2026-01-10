@@ -1,2 +1,9 @@
-```txt
-PyQt5==5.15.9
+PyQt5==5.15.11
+torch==2.1.2+cpu
+torchvision==0.16.2+cpu
+torchaudio==2.1.2+cpu
+transformers==4.41.2
+sentencepiece==0.2.0
+numpy<2
+networkx==3.3
+document-parser
