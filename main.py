@@ -266,7 +266,7 @@ class DocumentAnalyzerApp(QMainWindow):
         self.clear_btn.setEnabled(enabled and len(self.uploaded_files) > 0)
         self.tree_btn.setEnabled(enabled and len(self.links) > 0 and any(e.get("linked") for e in self.links))
 
-    # ---------- file handling ----------
+    # file handling
     def upload_files(self):
         files, _ = QFileDialog.getOpenFileNames(
             self,
@@ -311,19 +311,6 @@ class DocumentAnalyzerApp(QMainWindow):
         self.tree_btn.setEnabled(False)
         self.clear_btn.setEnabled(False)
         self.statusBar().showMessage("Файлы очищены.")
-
-    # ---------- parse helpers ----------
-    def parsed_doc_to_text(self, doc, max_pages=2) -> str:
-        if not doc or not getattr(doc, "pages", None):
-            return ""
-        parts = []
-        for page in doc.pages[:max_pages]:
-            for block in page.blocks:
-                for line in block.lines:
-                    line_text = " ".join([w.word for w in line.words if getattr(w, "word", "")])
-                    if line_text.strip():
-                        parts.append(line_text)
-        return "\n".join(parts)
 
     def serialize_doc_to_dict(self, doc, max_pages=2) -> dict:
         if not doc:
@@ -398,7 +385,7 @@ class DocumentAnalyzerApp(QMainWindow):
             json.dump(payload, f, ensure_ascii=False, indent=2)
         return path
 
-    # ---------- main actions ----------
+    # main actions
     def analyze_documents(self):
         if self._analysis_running:
             return
@@ -425,7 +412,6 @@ class DocumentAnalyzerApp(QMainWindow):
         self.file_info_text.setText(
             "Загрузка модели...\n"
             "Пожалуйста, подождите.\n"
-            "После загрузки можно будет снова нажимать кнопки.\n"
         )
 
         # UI keep-alive timer
@@ -502,7 +488,6 @@ class DocumentAnalyzerApp(QMainWindow):
         self._set_buttons_enabled(True)
         self.show_error_message("Ошибка анализа:\n\n" + err_text)
 
-    # Весь тяжёлый анализ — ТОЛЬКО здесь, в worker-потоке
     def _do_analysis_in_worker(self):
         self.texts = {}
         links = []
@@ -539,7 +524,7 @@ class DocumentAnalyzerApp(QMainWindow):
                     report.append(f"PDF: {parse_path}")
 
                 doc = self.parser.parse(parse_path)
-                text = self.parsed_doc_to_text(doc, max_pages=MAX_PAGES_TEXT)
+                text = doc.to_text()
                 self.texts[path] = text
 
                 txt_path = self.save_txt(base_noext, text)
@@ -637,7 +622,7 @@ class DocumentAnalyzerApp(QMainWindow):
 
         return "\n".join(report), links
 
-    # ---------- graph ----------
+    # graph
     def build_tree_visual(self):
         if not self.links:
             self.show_warning_message("Сначала выполните анализ документов.")
