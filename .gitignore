@@ -18,7 +18,16 @@ Thumbs.db
 
 outputs/
 *.log
-
 *.tmp
 
 ml_model/models/*.pth
+
+.cache/
+hf_cache/
+**/hf_cache/
+
+*.bin
+*.safetensors
+*.pt
+
+.env

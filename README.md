@@ -12,74 +12,64 @@ Desktop приложение для анализа документов и по�
 - Word (`.doc`, `.docx`)
 - Изображения (`.jpg`, `.jpeg`, `.png`, `.bmp`)
 
-## Требования
-
-- Windows 10/11 (x64)
-- Python 3.11.x
-- LibreOffice (для обработки Word-документов)
-- Не требуется GPU (используется CPU-only версия PyTorch)
+## Технологии
+- Python 3.11
+- PyQt5
+- transformers (HuggingFace)
+- LLM: **Qwen/Qwen2.5-3B-Instruct**
+- DocumentParser (OCR + структура)
+- LibreOffice (конвертация DOC/DOCX → PDF)
 
 ---
 
 ## Установка (Windows)
 
 ### 1. Установка Python
-
-Рекомендуется использовать Python версии **3.11.x**.
-
-Проверьте установленную версию:
-
+Рекомендуется Python **3.11.x**
 ```powershell
 python --version
 ```
-
 ### 2. Создание виртуального окружения
-
-В корне проекта выполните:
-
 ```powershell
 py -3.11 -m venv .venv311
-.\.venv311\Scripts\activate
-python --version
+.\.venv311\Scripts\Activate.ps1
 ```
-
 ### 3. Обновление pip и инструментов сборки
 ```powershell
 python -m pip install --upgrade pip setuptools wheel
 ```
-
 ### 4. Установка PyTorch (CPU-only)
-Для работы ML-модуля используется версия PyTorch без поддержки CUDA:
 ```powershell
 pip install torch==2.1.2+cpu torchvision==0.16.2+cpu torchaudio==2.1.2+cpu --index-url https://download.pytorch.org/whl/cpu
 ```
-Если возникает ошибка, связанная с NumPy, выполните:
+Если возникнет ошибка с NumPy:
 ```powershell
 pip install "numpy<2"
 ```
-
 ### 5. Установка остальных зависимостей
 ```powershell
-pip install -r requirements.txt
+pip install transformers==4.37.2
+pip install accelerate
+pip install sentencepiece
+pip install pyqt5 networkx
+pip install git+https://github.com/i1mk8/DocumentParser.git
 ```
-### 6. Установка Tesseract OCR (для OCR)
+### 6. Установка системных зависимостей
+Установить Tesseract OCR (языковой пакет rus)
 
-Установите Tesseract OCR.
-Установите языковой пакет rus.
+LibreOffice
 
-### 7. Установка LibreOffice
-
-LibreOffice используется для конвертации файлов .doc и .docx в PDF.
-Установите LibreOffice для Windows (x64).
-Убедитесь, что путь к soffice.exe указан корректно в main.py, например:
+Путь к soffice.exe должен быть прописан в main.py, например:
 ```powershell
-D:\LibreOffice\program\soffice.exe
+C:\LibreOffice\program\soffice.exe
 ```
-При необходимости путь можно изменить под вашу систему.
-
+### 7. Настройка кеша LLM
+```powershell
+mkdir C:\hf_cache
+$env:HF_HOME="C:\hf_cache"
+$env:HF_HUB_DISABLE_SYMLINKS_WARNING="1"
+```
 ### Запуск приложения
-
-После установки всех зависимостей выполните:
 ```powershell
 python main.py
 ```

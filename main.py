@@ -15,25 +15,21 @@ from PyQt5.QtWidgets import (
     QMessageBox, QGraphicsView, QGraphicsScene, QGraphicsEllipseItem,
     QGraphicsTextItem, QGraphicsLineItem, QGraphicsItem
 )
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QObject, QThread, pyqtSignal, QTimer
 from PyQt5.QtGui import QFont, QPen, QBrush
 
 from document_parser import DocumentParser
 
-# ML import
+# LLM import
 ML_AVAILABLE = False
 ML_IMPORT_ERROR = None
 try:
-    from ml_model.infer import load_model, predict
-    try:
-        from ml_model.infer import THRESHOLD
-    except Exception:
-        THRESHOLD = 0.6
+    from ml_model_llm.infer_llm import load_model, predict_with_reason, DEFAULT_MODEL_ID
     ML_AVAILABLE = True
 except Exception as e:
     ML_AVAILABLE = False
     ML_IMPORT_ERROR = e
-    THRESHOLD = 0.6
+    DEFAULT_MODEL_ID = "неизвестно"
 
 # networkx
 try:
@@ -42,14 +38,12 @@ try:
 except Exception:
     NX_AVAILABLE = False
 
-
 MAX_PAGES_TEXT = 2
 MAX_PAGES_JSON = 2
 OUTPUTS_DIR_NAME = "outputs"
 
 
 class GraphView(QGraphicsView):
-    """QGraphicsView с зумом колесом мыши и перетаскиванием сцены"""
     def __init__(self, scene):
         super().__init__(scene)
         self.setDragMode(QGraphicsView.ScrollHandDrag)
@@ -66,13 +60,7 @@ class GraphView(QGraphicsView):
 
 
 class GraphWindow(QMainWindow):
-    """
-    Окно с графическим отображением связей
-    nodes: list[str] (id документов)
-    edges: list[dict] [{src, dst, score}]
-    labels: dict[id -> short_name]
-    """
-    def __init__(self, nodes, edges, labels, threshold):
+    def __init__(self, nodes, edges, labels):
         super().__init__()
         self.setWindowTitle("Граф связей документов")
         self.setGeometry(150, 150, 1100, 800)
@@ -82,7 +70,7 @@ class GraphWindow(QMainWindow):
         layout = QVBoxLayout()
         central.setLayout(layout)
 
-        info = QLabel(f"Узлов: {len(nodes)} | Рёбер: {len(edges)} | Порог: {threshold}")
+        info = QLabel(f"Узлов: {len(nodes)} | Рёбер: {len(edges)}")
         info.setFont(QFont("Arial", 11))
         layout.addWidget(info)
 
@@ -93,16 +81,12 @@ class GraphWindow(QMainWindow):
         self._draw(nodes, edges, labels)
 
     def _layout_positions(self, nodes, edges):
-        """
-        Возвращает dict[node_id -> (x,y)]
-        Если networkx доступен- spring_layout, иначе круг
-        """
         if NX_AVAILABLE:
             G = nx.Graph()
             for n in nodes:
                 G.add_node(n)
             for e in edges:
-                G.add_edge(e["src"], e["dst"], weight=float(e["score"]))
+                G.add_edge(e["src"], e["dst"], weight=float(e.get("score", 1.0)))
 
             pos = nx.spring_layout(G, k=1.2, iterations=80, seed=42)
             scale = 320.0
@@ -118,7 +102,6 @@ class GraphWindow(QMainWindow):
 
     def _draw(self, nodes, edges, labels):
         self.scene.clear()
-
         pos = self._layout_positions(nodes, edges)
 
         node_radius = 26
@@ -129,7 +112,6 @@ class GraphWindow(QMainWindow):
         pen_node.setWidth(2)
         brush_node = QBrush(Qt.white)
 
-        # edges
         for e in edges:
             a = e["src"]
             b = e["dst"]
@@ -140,14 +122,6 @@ class GraphWindow(QMainWindow):
             line.setZValue(0)
             self.scene.addItem(line)
 
-            mx, my = (x1 + x2) / 2, (y1 + y2) / 2
-            score_text = QGraphicsTextItem(f"{float(e['score']):.2f}")
-            score_text.setDefaultTextColor(Qt.darkGray)
-            score_text.setPos(mx + 4, my + 4)
-            score_text.setZValue(2)
-            self.scene.addItem(score_text)
-
-        # nodes
         for n in nodes:
             x, y = pos[n]
             circle = QGraphicsEllipseItem(
@@ -158,7 +132,6 @@ class GraphWindow(QMainWindow):
             circle.setBrush(brush_node)
             circle.setZValue(1)
             circle.setFlag(QGraphicsItem.ItemIsMovable, True)
-            circle.setFlag(QGraphicsItem.ItemSendsGeometryChanges, True)
             self.scene.addItem(circle)
 
             name = labels.get(n, n)
@@ -173,45 +146,59 @@ class GraphWindow(QMainWindow):
         self.view.fitInView(self.scene.sceneRect(), Qt.KeepAspectRatio)
 
 
+class ModelLoadWorker(QObject):
+    finished = pyqtSignal(object)
+    error = pyqtSignal(str)
+
+    def run(self):
+        try:
+            model = load_model()
+            self.finished.emit(model)
+        except Exception:
+            self.error.emit(traceback.format_exc())
+
+
+class AnalyzeWorker(QObject):
+    finished = pyqtSignal(str, list)   # report_text, links
+    error = pyqtSignal(str)
+
+    def __init__(self, app_ref):
+        super().__init__()
+        self.app_ref = app_ref
+
+    def run(self):
+        try:
+            report_text, links = self.app_ref._do_analysis_in_worker()
+            self.finished.emit(report_text, links)
+        except Exception:
+            self.error.emit(traceback.format_exc())
+
+
 class DocumentAnalyzerApp(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        # OCR/парсер
         self.parser = DocumentParser(ocr_lang="rus")
-
-        # outputs dir
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
         self.outputs_dir = os.path.join(self.base_dir, OUTPUTS_DIR_NAME)
         os.makedirs(self.outputs_dir, exist_ok=True)
 
-        # ML модель
         self.ml_ready = False
-        self.ml_load_error = None
         self.ml_model = None
+        self._model_loading = False
+        self._analysis_running = False
 
-        if ML_AVAILABLE:
-            try:
-                default_pth = os.path.join(self.base_dir, "ml_model", "models", "rubert_siamese_model.pth")
-                try:
-                    self.ml_model = load_model(default_pth)
-                except TypeError:
-                    self.ml_model = load_model()
-                self.ml_ready = True
-            except Exception as e:
-                self.ml_ready = False
-                self.ml_load_error = e
-
-        # state
         self.uploaded_files = []
-        self.texts = {}   # file_path -> extracted text
-        self.links = []   # [{src,dst,score,linked}]
-        self.tree = {}    # adjacency
+        self.texts = {}
+        self.links = []
+        self.tree = {}
+
+        self._ui_timer = None
 
         self.initUI()
 
     def initUI(self):
-        self.setWindowTitle('Анализ связей между документами')
+        self.setWindowTitle("Анализ связей между документами")
         self.setGeometry(100, 100, 980, 700)
 
         central_widget = QWidget()
@@ -219,148 +206,113 @@ class DocumentAnalyzerApp(QMainWindow):
         main_layout = QVBoxLayout()
         central_widget.setLayout(main_layout)
 
-        title_label = QLabel('Система анализа документов и построение дерева ссылок')
+        title_label = QLabel("Система анализа документов и построение дерева ссылок")
         title_label.setAlignment(Qt.AlignCenter)
-        title_label.setFont(QFont('Arial', 16, QFont.Bold))
+        title_label.setFont(QFont("Arial", 16, QFont.Bold))
         main_layout.addWidget(title_label)
 
-        # статус ML
         if not ML_AVAILABLE:
-            ml_status = f"ML: недоступен ({type(ML_IMPORT_ERROR).__name__}: {ML_IMPORT_ERROR})"
+            ml_status = f"LLM: недоступна (ошибка импорта: {type(ML_IMPORT_ERROR).__name__})"
         else:
-            if self.ml_ready:
-                ml_status = f"ML: загружен (порог={THRESHOLD})"
-            else:
-                ml_status = f"ML: не загружен ({type(self.ml_load_error).__name__}: {self.ml_load_error})"
+            ml_status = f"LLM: будет загружена при анализе (модель: {DEFAULT_MODEL_ID})"
 
         self.ml_status_label = QLabel(ml_status)
         self.ml_status_label.setWordWrap(True)
         self.ml_status_label.setFont(QFont("Arial", 10))
         main_layout.addWidget(self.ml_status_label)
 
-        # вывод
         self.file_info_text = QTextEdit()
-        self.file_info_text.setPlaceholderText('Здесь будет вывод анализа...')
+        self.file_info_text.setPlaceholderText("Здесь будет вывод анализа...")
         self.file_info_text.setReadOnly(True)
         main_layout.addWidget(self.file_info_text)
 
-        # кнопки
         buttons_layout = QHBoxLayout()
 
-        self.upload_btn = QPushButton('Загрузить документы')
-        self.upload_btn.setFont(QFont('Arial', 12))
+        self.upload_btn = QPushButton("Загрузить документы")
+        self.upload_btn.setFont(QFont("Arial", 12))
         self.upload_btn.clicked.connect(self.upload_files)
         buttons_layout.addWidget(self.upload_btn)
 
-        self.analyze_btn = QPushButton('Анализировать документы')
-        self.analyze_btn.setFont(QFont('Arial', 12))
+        self.analyze_btn = QPushButton("Анализировать документы")
+        self.analyze_btn.setFont(QFont("Arial", 12))
         self.analyze_btn.clicked.connect(self.analyze_documents)
         self.analyze_btn.setEnabled(False)
         buttons_layout.addWidget(self.analyze_btn)
 
-        self.tree_btn = QPushButton('Построить дерево')
-        self.tree_btn.setFont(QFont('Arial', 12))
+        self.tree_btn = QPushButton("Построить дерево")
+        self.tree_btn.setFont(QFont("Arial", 12))
         self.tree_btn.clicked.connect(self.build_tree_visual)
         self.tree_btn.setEnabled(False)
         buttons_layout.addWidget(self.tree_btn)
 
-        self.clear_btn = QPushButton('Очистить файлы')
-        self.clear_btn.setFont(QFont('Arial', 12))
+        self.clear_btn = QPushButton("Очистить файлы")
+        self.clear_btn.setFont(QFont("Arial", 12))
         self.clear_btn.clicked.connect(self.clear_files)
         self.clear_btn.setEnabled(False)
         buttons_layout.addWidget(self.clear_btn)
 
         main_layout.addLayout(buttons_layout)
-        self.statusBar().showMessage('Готов к работе. Загрузите документы для анализа.')
+        self.statusBar().showMessage("Готово. Загрузите документы для анализа.")
 
-    # UI helpers
     def show_error_message(self, message):
-        QMessageBox.critical(self, 'Ошибка', message)
+        QMessageBox.critical(self, "Ошибка", message)
 
     def show_warning_message(self, message):
-        QMessageBox.warning(self, 'Предупреждение', message)
+        QMessageBox.warning(self, "Предупреждение", message)
 
-    # file handling
+    def _set_buttons_enabled(self, enabled: bool):
+        self.upload_btn.setEnabled(enabled)
+        self.analyze_btn.setEnabled(enabled and len(self.uploaded_files) > 0)
+        self.clear_btn.setEnabled(enabled and len(self.uploaded_files) > 0)
+        self.tree_btn.setEnabled(enabled and len(self.links) > 0 and any(e.get("linked") for e in self.links))
+
+    # ---------- file handling ----------
     def upload_files(self):
-        try:
-            file_dialog = QFileDialog()
-            files, _ = file_dialog.getOpenFileNames(
-                self,
-                'Выберите документы для анализа',
-                '',
-                'Документы (*.pdf *.docx *.doc);;'
-                'PDF файлы (*.pdf);;'
-                'Word документы (*.docx *.doc);;'
-                'Изображения (*.jpg *.jpeg *.png *.bmp);;'
-                'Все файлы (*)'
-            )
-            if files:
-                self.process_uploaded_files(files)
-        except Exception as e:
-            self.show_error_message(f"Ошибка при загрузке файлов: {str(e)}")
+        files, _ = QFileDialog.getOpenFileNames(
+            self,
+            "Выберите документы для анализа",
+            "",
+            "Документы (*.pdf *.docx *.doc *.jpg *.jpeg *.png *.bmp);;Все файлы (*)"
+        )
+        if files:
+            self.process_uploaded_files(files)
 
     def process_uploaded_files(self, files):
-        valid_extensions = {'.pdf', '.docx', '.doc', '.jpg', '.jpeg', '.png', '.bmp'}
+        valid_extensions = {".pdf", ".docx", ".doc", ".jpg", ".jpeg", ".png", ".bmp"}
         new_files = []
 
         for file_path in files:
             file_ext = os.path.splitext(file_path)[1].lower()
-            if file_ext in valid_extensions:
-                if file_path not in self.uploaded_files:
-                    self.uploaded_files.append(file_path)
-                    new_files.append(file_path)
-            else:
-                self.show_warning_message(
-                    f'Файл {os.path.basename(file_path)} имеет неподдерживаемый формат и будет пропущен.'
-                )
+            if file_ext in valid_extensions and file_path not in self.uploaded_files:
+                self.uploaded_files.append(file_path)
+                new_files.append(file_path)
 
         if new_files:
             self.update_file_info()
             self.analyze_btn.setEnabled(True)
             self.clear_btn.setEnabled(True)
             self.tree_btn.setEnabled(False)
-            self.statusBar().showMessage(
-                f'Загружено {len(new_files)} новых документов. Всего документов: {len(self.uploaded_files)}'
-            )
-        else:
-            self.statusBar().showMessage('Новых подходящих документов не найдено.')
+            self.statusBar().showMessage(f"Загружено документов: {len(self.uploaded_files)}")
 
     def update_file_info(self):
-        lines = []
-        lines.append("ЗАГРУЖЕННЫЕ ДОКУМЕНТЫ")
-        lines.append("-" * 60)
+        lines = ["ЗАГРУЖЕННЫЕ ДОКУМЕНТЫ", "-" * 60]
         for i, file_path in enumerate(self.uploaded_files, 1):
-            file_name = os.path.basename(file_path)
-            file_ext = os.path.splitext(file_path)[1].upper()
-            lines.append(f"{i}. {file_name} ({file_ext})")
-            lines.append(f"   Путь: {file_path}")
+            lines.append(f"{i}. {os.path.basename(file_path)}")
+            lines.append(f"   {file_path}")
         self.file_info_text.setText("\n".join(lines))
 
     def clear_files(self):
-        if not self.uploaded_files:
-            self.show_warning_message("Нет файлов для очистки.")
-            return
+        self.uploaded_files.clear()
+        self.texts = {}
+        self.links = []
+        self.tree = {}
+        self.file_info_text.clear()
+        self.analyze_btn.setEnabled(False)
+        self.tree_btn.setEnabled(False)
+        self.clear_btn.setEnabled(False)
+        self.statusBar().showMessage("Файлы очищены.")
 
-        reply = QMessageBox.question(
-            self,
-            'Подтверждение очистки',
-            f'Удалить все прикрепленные файлы?\n\nФайлов: {len(self.uploaded_files)}',
-            QMessageBox.Yes | QMessageBox.No,
-            QMessageBox.No
-        )
-
-        if reply == QMessageBox.Yes:
-            self.uploaded_files.clear()
-            self.texts = {}
-            self.links = []
-            self.tree = {}
-            self.file_info_text.clear()
-            self.analyze_btn.setEnabled(False)
-            self.tree_btn.setEnabled(False)
-            self.clear_btn.setEnabled(False)
-            self.statusBar().showMessage('Файлы удалены. Можно загрузить новые документы.')
-
-    # parse/serialize
+    # ---------- parse helpers ----------
     def parsed_doc_to_text(self, doc, max_pages=2) -> str:
         if not doc or not getattr(doc, "pages", None):
             return ""
@@ -376,12 +328,9 @@ class DocumentAnalyzerApp(QMainWindow):
     def serialize_doc_to_dict(self, doc, max_pages=2) -> dict:
         if not doc:
             return {}
-        out = {
-            "source_path": getattr(doc, "path", None),
-            "source_type": getattr(doc, "source_type", None),
-            "pages": []
-        }
-
+        out = {"source_path": getattr(doc, "path", None),
+               "source_type": getattr(doc, "source_type", None),
+               "pages": []}
         pages = getattr(doc, "pages", []) or []
         for page in pages[:max_pages]:
             page_dict = {"blocks": []}
@@ -409,27 +358,18 @@ class DocumentAnalyzerApp(QMainWindow):
     def convert_word_to_pdf(self, word_path: str) -> str:
         out_dir = tempfile.mkdtemp(prefix="lo_conv_")
         soffice = r"D:\LibreOffice\program\soffice.exe"
-
         subprocess.run(
-            [
-                soffice,
-                "--headless",
-                "--nologo",
-                "--nofirststartwizard",
-                "--convert-to", "pdf",
-                "--outdir", out_dir,
-                word_path
-            ],
+            [soffice, "--headless", "--nologo", "--nofirststartwizard",
+             "--convert-to", "pdf", "--outdir", out_dir, word_path],
             check=True
         )
-
         base = os.path.splitext(os.path.basename(word_path))[0]
         pdf_path = os.path.join(out_dir, base + ".pdf")
         if not os.path.exists(pdf_path):
             raise FileNotFoundError(f"LibreOffice не создал PDF: {pdf_path}")
         return pdf_path
 
-    # outputs
+    # ---------- outputs ----------
     def save_txt(self, base_name: str, text: str) -> str:
         path = os.path.join(self.outputs_dir, self.safe_filename(base_name) + ".txt")
         with open(path, "w", encoding="utf-8") as f:
@@ -446,66 +386,157 @@ class DocumentAnalyzerApp(QMainWindow):
         path = os.path.join(self.outputs_dir, "links.csv")
         with open(path, "w", newline="", encoding="utf-8") as f:
             w = csv.writer(f)
-            w.writerow(["doc1", "doc2", "score", "linked", "threshold"])
+            w.writerow(["doc1", "doc2", "linked", "reason"])
             for e in links:
-                w.writerow([e["src"], e["dst"], f"{e['score']:.6f}", int(e["linked"]), THRESHOLD])
+                w.writerow([os.path.basename(e["src"]), os.path.basename(e["dst"]), int(e["linked"]), e.get("reason", "")])
         return path
 
     def save_tree_json(self, tree: dict) -> str:
         path = os.path.join(self.outputs_dir, "tree.json")
-        payload = {
-            "threshold": THRESHOLD,
-            "generated_at": datetime.now().isoformat(timespec="seconds"),
-            "tree": tree
-        }
+        payload = {"generated_at": datetime.now().isoformat(timespec="seconds"), "tree": tree}
         with open(path, "w", encoding="utf-8") as f:
             json.dump(payload, f, ensure_ascii=False, indent=2)
         return path
 
+    # ---------- main actions ----------
     def analyze_documents(self):
-        """
-        ЭТАП 1: извлечение текста + сохранение TXT/JSON
-        ЭТАП 2: ML скоринг всех пар + сохранение links.csv
-        ЭТАП 3: формирование структуры графа (adjacency) + сохранение tree.json
-        """
+        if self._analysis_running:
+            return
+
         if not self.uploaded_files:
             self.show_warning_message("Нет документов для анализа.")
             return
 
+        if not ML_AVAILABLE:
+            self.show_error_message(f"LLM недоступна: {type(ML_IMPORT_ERROR).__name__}: {ML_IMPORT_ERROR}")
+            return
+
+        if not self.ml_ready and not self._model_loading:
+            self._start_model_loading()
+            return
+
+        self._start_analysis()
+
+    def _start_model_loading(self):
+        self._model_loading = True
+        self._set_buttons_enabled(False)
+        self.statusBar().showMessage("Загрузка LLM-модели...")
+
+        self.file_info_text.setText(
+            "Загрузка модели...\n"
+            "Пожалуйста, подождите.\n"
+            "После загрузки можно будет снова нажимать кнопки.\n"
+        )
+
+        # UI keep-alive timer
+        self._ui_timer = QTimer(self)
+        self._ui_timer.timeout.connect(lambda: QApplication.processEvents())
+        self._ui_timer.start(100)
+
+        self._thread_model = QThread()
+        self._worker_model = ModelLoadWorker()
+        self._worker_model.moveToThread(self._thread_model)
+
+        self._thread_model.started.connect(self._worker_model.run)
+        self._worker_model.finished.connect(self._on_model_loaded)
+        self._worker_model.error.connect(self._on_model_load_error)
+        self._worker_model.finished.connect(self._thread_model.quit)
+        self._worker_model.error.connect(self._thread_model.quit)
+
+        self._thread_model.start()
+
+    def _on_model_loaded(self, model):
+        if self._ui_timer:
+            self._ui_timer.stop()
+            self._ui_timer = None
+
+        self.ml_model = model
+        self.ml_ready = True
+        self._model_loading = False
+
+        self.ml_status_label.setText(f"LLM: загружена (модель: {DEFAULT_MODEL_ID})")
+        self.statusBar().showMessage("Модель загружена. Можно запускать анализ.")
+        self._set_buttons_enabled(True)
+
+    def _on_model_load_error(self, err_text):
+        if self._ui_timer:
+            self._ui_timer.stop()
+            self._ui_timer = None
+
+        self._model_loading = False
+        self.ml_ready = False
+        self.ml_model = None
+        self._set_buttons_enabled(True)
+        self.ml_status_label.setText("LLM: ошибка загрузки")
+        self.show_error_message("Ошибка загрузки модели:\n\n" + err_text)
+
+    def _start_analysis(self):
+        self._analysis_running = True
+        self._set_buttons_enabled(False)
+        self.statusBar().showMessage("Анализ выполняется...")
+
+        self.file_info_text.setText("Анализ выполняется...\nПожалуйста, подождите.\n")
+
+        self._thread_an = QThread()
+        self._worker_an = AnalyzeWorker(self)
+        self._worker_an.moveToThread(self._thread_an)
+
+        self._thread_an.started.connect(self._worker_an.run)
+        self._worker_an.finished.connect(self._on_analysis_finished)
+        self._worker_an.error.connect(self._on_analysis_error)
+        self._worker_an.finished.connect(self._thread_an.quit)
+        self._worker_an.error.connect(self._thread_an.quit)
+
+        self._thread_an.start()
+
+    def _on_analysis_finished(self, report_text, links):
+        self.links = links
+        self.file_info_text.setText(report_text)
+        self._analysis_running = False
+        self._set_buttons_enabled(True)
+        self.tree_btn.setEnabled(any(e.get("linked") for e in self.links))
+        self.statusBar().showMessage("Анализ завершён.")
+
+    def _on_analysis_error(self, err_text):
+        self._analysis_running = False
+        self._set_buttons_enabled(True)
+        self.show_error_message("Ошибка анализа:\n\n" + err_text)
+
+    # Весь тяжёлый анализ — ТОЛЬКО здесь, в worker-потоке
+    def _do_analysis_in_worker(self):
         self.texts = {}
-        self.links = []
-        self.tree = {}
+        links = []
 
         report = []
-        report.append("СИСТЕМА АНАЛИЗА ДОКУМЕНТОВ")
-        report.append("Отчёт о выполнении анализа")
+        report.append("ОТЧЁТ О РАБОТЕ СИСТЕМЫ АНАЛИЗА ДОКУМЕНТОВ")
+        report.append(f"Дата и время: {datetime.now().isoformat(timespec='seconds')}")
         report.append("")
-        report.append("1. Извлечение текста из документов")
-        report.append("-" * 60)
+        report.append("ЭТАП 1. Извлечение текста из документов и сохранение результатов")
+        report.append("-" * 70)
         report.append("")
 
-        # ---------- ЭТАП 1 ----------
-        parsed_count = 0
+        ok_count = 0
+
         for path in self.uploaded_files:
             base = os.path.basename(path)
             base_noext = os.path.splitext(base)[0]
 
+            report.append(f"Документ: {base}")
+            report.append(f"Путь: {path}")
+
             if not os.path.exists(path):
-                report.append("[ОШИБКА]")
-                report.append(f"Документ: {base}")
-                report.append(f"Источник: {path}")
-                report.append("Причина: файл не найден")
+                report.append("Статус: ОШИБКА (файл не найден)")
                 report.append("")
                 continue
 
             try:
                 ext = os.path.splitext(path)[1].lower()
                 parse_path = path
-                converted_info = None
 
                 if ext in (".doc", ".docx"):
                     parse_path = self.convert_word_to_pdf(path)
-                    converted_info = f"Выполнено преобразование Word → PDF: {parse_path}"
+                    report.append("Преобразование: Word → PDF выполнено")
+                    report.append(f"PDF: {parse_path}")
 
                 doc = self.parser.parse(parse_path)
                 text = self.parsed_doc_to_text(doc, max_pages=MAX_PAGES_TEXT)
@@ -515,70 +546,43 @@ class DocumentAnalyzerApp(QMainWindow):
                 json_dict = self.serialize_doc_to_dict(doc, max_pages=MAX_PAGES_JSON)
                 json_path = self.save_json(base_noext, json_dict)
 
-                parsed_count += 1
+                ok_count += 1
 
-                report.append("[УСПЕШНО]")
-                report.append(f"Документ: {base}")
-                report.append(f"Источник: {path}")
-                if converted_info:
-                    report.append(converted_info)
-                report.append(f"Количество символов (первые {MAX_PAGES_TEXT} страницы): {len(text)}")
-                report.append("Результаты сохранены:")
-                report.append(f"  - Текстовый файл: {txt_path}")
-                report.append(f"  - Структурированный JSON: {json_path}")
+                report.append("Статус: УСПЕШНО")
+                report.append(f"Длина текста (первые {MAX_PAGES_TEXT} стр.): {len(text)} символов")
+                report.append(f"TXT:  {txt_path}")
+                report.append(f"JSON: {json_path}")
 
-                fragment = (text or "").replace("\r", "").strip()
-                fragment = fragment[:200]
-                if fragment:
-                    report.append("Фрагмент текста:")
-                    report.append(f'  "{fragment}"')
-                else:
-                    report.append("Фрагмент текста: отсутствует (пустой текст)")
-
+                fragment = (text or "").replace("\r", "").strip()[:200]
+                report.append("Фрагмент текста (до 200 символов):")
+                report.append(f"  {fragment if fragment else '(пусто)'}")
                 report.append("")
 
             except Exception as e:
-                report.append("[ОШИБКА]")
-                report.append(f"Документ: {base}")
-                report.append(f"Источник: {path}")
-                report.append(f"Тип ошибки: {type(e).__name__}")
-                report.append(f"Сообщение: {e}")
-                report.append("Трассировка:")
-                report.append(traceback.format_exc().rstrip())
+                report.append("Статус: ОШИБКА")
+                report.append(f"{type(e).__name__}: {e}")
                 report.append("")
+                continue
 
-        # ---------- ЭТАП 2 ----------
-        report.append("2. Семантический анализ и поиск связей")
-        report.append("-" * 60)
+        report.append(f"Итого обработано документов успешно: {ok_count} из {len(self.uploaded_files)}")
         report.append("")
-
-        if not self.ml_ready:
-            report.append("ML-модель недоступна. Этап семантического сравнения пропущен.")
-            if self.ml_load_error:
-                report.append(f"Причина: {type(self.ml_load_error).__name__}: {self.ml_load_error}")
-            elif (not ML_AVAILABLE) and ML_IMPORT_ERROR:
-                report.append(f"Причина: {type(ML_IMPORT_ERROR).__name__}: {ML_IMPORT_ERROR}")
-            report.append("")
-            self.file_info_text.setText("\n".join(report))
-            self.tree_btn.setEnabled(False)
-            return
+        report.append("ЭТАП 2. Сравнение документов (LLM)")
+        report.append("-" * 70)
+        report.append("")
+        report.append(f"Модель: {DEFAULT_MODEL_ID} (через transformers)")
+        report.append("Критерий связи: ответ LLM {related: true/false} + обоснование")
+        report.append("")
 
         valid_paths = [p for p in self.uploaded_files if p in self.texts and self.texts[p].strip()]
         if len(valid_paths) < 2:
-            report.append("Недостаточно документов с извлечённым текстом для сравнения (нужно минимум 2).")
-            report.append("")
-            self.file_info_text.setText("\n".join(report))
-            self.tree_btn.setEnabled(False)
-            return
-
-        report.append("Используемая модель: Siamese RuBERT")
-        report.append(f"Порог определения связи: {THRESHOLD:.2f}")
-        report.append("")
-        report.append("Результаты сравнения:")
-        report.append("")
+            report.append("Недостаточно документов с текстом для сравнения (нужно минимум 2).")
+            return "\n".join(report), links
 
         total_pairs = 0
         linked_pairs = 0
+
+        report.append("Результаты сравнения пар:")
+        report.append("")
 
         for i in range(len(valid_paths)):
             for j in range(i + 1, len(valid_paths)):
@@ -588,106 +592,77 @@ class DocumentAnalyzerApp(QMainWindow):
                 t2 = self.texts[p2]
                 total_pairs += 1
 
-                try:
-                    score = float(predict(t1, t2))
-                    linked = score >= THRESHOLD
-                    if linked:
-                        linked_pairs += 1
+                res = predict_with_reason(t1, t2)
+                linked = bool(res.get("related", False))
+                reason = str(res.get("reason", "")).strip()
+                if linked:
+                    linked_pairs += 1
 
-                    self.links.append({
-                        "src": p1,
-                        "dst": p2,
-                        "score": score,
-                        "linked": linked
-                    })
+                links.append({"src": p1, "dst": p2, "linked": linked, "reason": reason})
 
-                    report.append(f"Пара документов:")
-                    report.append(f"  Документ A: {os.path.basename(p1)}")
-                    report.append(f"  Документ B: {os.path.basename(p2)}")
-                    report.append(f"  Коэффициент схожести: {score:.4f}")
-                    report.append(f"  Вывод: {'связь обнаружена' if linked else 'документы не связаны'}")
-                    report.append("")
+                report.append(f"Пара: {os.path.basename(p1)}  ↔  {os.path.basename(p2)}")
+                report.append(f"Вывод: {'СВЯЗАНЫ' if linked else 'НЕ СВЯЗАНЫ'}")
+                report.append(f"Обоснование: {reason if reason else '(нет обоснования)'}")
+                report.append("")
 
-                except Exception as e:
-                    report.append("Пара документов:")
-                    report.append(f"  Документ A: {os.path.basename(p1)}")
-                    report.append(f"  Документ B: {os.path.basename(p2)}")
-                    report.append("  Ошибка вычисления схожести")
-                    report.append(f"  Тип ошибки: {type(e).__name__}")
-                    report.append(f"  Сообщение: {e}")
-                    report.append("")
-
-        report.append(f"Общее количество сравнений: {total_pairs}")
-        report.append(f"Количество выявленных связей: {linked_pairs}")
+        report.append(f"Итого сравнений: {total_pairs}")
+        report.append(f"Итого связей обнаружено: {linked_pairs}")
         report.append("")
 
-        links_csv = self.save_links_csv(self.links)
-        report.append("Результаты сохранены в файл:")
+        links_csv = self.save_links_csv(links)
+        report.append("Файл результатов связей (links.csv):")
         report.append(f"  {links_csv}")
         report.append("")
 
-        # ---------- ЭТАП 3 ----------
-        report.append("3. Формирование графа связей")
-        report.append("-" * 60)
+        report.append("ЭТАП 3. Формирование графа связей")
+        report.append("-" * 70)
         report.append("")
 
         tree = {p: [] for p in valid_paths}
-        for e in self.links:
+        for e in links:
             if e["linked"]:
-                tree[e["src"]].append({"to": e["dst"], "score": e["score"]})
-                tree[e["dst"]].append({"to": e["src"], "score": e["score"]})
-
-        self.tree = tree
+                tree[e["src"]].append({"to": e["dst"], "reason": e.get("reason", "")})
+                tree[e["dst"]].append({"to": e["src"], "reason": e.get("reason", "")})
 
         if linked_pairs == 0:
-            report.append("По заданному пороговому значению связи между документами не выявлены.")
-            report.append("Граф не содержит рёбер.")
+            report.append("Связи между документами не обнаружены. Граф будет без рёбер.")
         else:
-            report.append("Связи между документами выявлены.")
-            report.append(f"Количество рёбер в графе: {linked_pairs}")
+            report.append(f"Связи обнаружены. Рёбер в графе: {linked_pairs}")
             report.append("Для визуализации нажмите кнопку «Построить дерево».")
 
         tree_json = self.save_tree_json(tree)
         report.append("")
-        report.append("Структура графа сохранена в файл:")
+        report.append("Файл структуры графа (tree.json):")
         report.append(f"  {tree_json}")
-        report.append("")
 
-        self.file_info_text.setText("\n".join(report))
-        self.tree_btn.setEnabled(True)
+        return "\n".join(report), links
 
-    # ---------------- графика ----------------
+    # ---------- graph ----------
     def build_tree_visual(self):
-        if not self.uploaded_files or not self.links:
+        if not self.links:
             self.show_warning_message("Сначала выполните анализ документов.")
+            return
+
+        edges = [e for e in self.links if e.get("linked")]
+        if not edges:
+            QMessageBox.information(self, "Граф связей", "Связей не обнаружено, граф пуст.")
             return
 
         nodes = list({p for p in self.uploaded_files if p in self.texts})
         labels = {p: os.path.basename(p) for p in nodes}
-        edges = [e for e in self.links if e["linked"]]
 
-        if len(edges) == 0:
-            QMessageBox.information(
-                self,
-                "Граф связей",
-                f"По порогу {THRESHOLD:.2f} связи не обнаружены.\nГраф не содержит рёбер."
-            )
-            return
-
-        w = GraphWindow(nodes, edges, labels, THRESHOLD)
+        w = GraphWindow(nodes, edges, labels)
         w.show()
         self._graph_window = w
 
 
 def main():
     app = QApplication(sys.argv)
-    app.setStyle('Fusion')
-
+    app.setStyle("Fusion")
     window = DocumentAnalyzerApp()
     window.show()
-
     sys.exit(app.exec_())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
