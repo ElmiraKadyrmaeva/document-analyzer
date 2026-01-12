@@ -21,7 +21,6 @@ class LLMDocumentLinker:
         else:
             self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-        # ВАЖНО: low_cpu_mem_usage помогает на слабых ПК
         self.tokenizer = AutoTokenizer.from_pretrained(
             self.model_id_or_path,
             trust_remote_code=True
