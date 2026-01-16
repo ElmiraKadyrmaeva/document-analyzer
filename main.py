@@ -5,9 +5,10 @@ import csv
 import traceback
 import subprocess
 import tempfile
+import shutil
 from datetime import datetime
 
-os.environ["PATH"] = r"D:\LibreOffice\program;" + os.environ.get("PATH", "")
+# os.environ["PATH"] = r"D:\LibreOffice\program;" + os.environ.get("PATH", "")
 
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QVBoxLayout, QHBoxLayout,
@@ -41,6 +42,107 @@ except Exception:
 MAX_PAGES_TEXT = 2
 MAX_PAGES_JSON = 2
 OUTPUTS_DIR_NAME = "outputs"
+
+
+def find_soffice_path() -> str:
+    """
+    Ищет soffice.exe в:
+    1) переменной окружения LIBREOFFICE_PATH
+    2) PATH
+    3) стандартных путях установки Windows
+    """
+    env_path = os.environ.get("LIBREOFFICE_PATH", "").strip().strip('"')
+    if env_path:
+        if os.path.isdir(env_path):
+            candidate = os.path.join(env_path, "soffice.exe")
+            if os.path.exists(candidate):
+                return candidate
+        elif os.path.isfile(env_path) and env_path.lower().endswith("soffice.exe"):
+            return env_path
+
+    from_path = shutil.which("soffice") or shutil.which("soffice.exe")
+    if from_path:
+        return from_path
+
+    candidates = [
+        r"C:\Program Files\LibreOffice\program\soffice.exe",
+        r"C:\Program Files (x86)\LibreOffice\program\soffice.exe",
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+
+    raise FileNotFoundError(
+        "LibreOffice не найден (soffice.exe).\n\n"
+        "Установите LibreOffice и:\n"
+        "1) либо добавьте папку LibreOffice\\program в PATH,\n"
+        "2) либо задайте переменную окружения LIBREOFFICE_PATH, например:\n"
+        "   LIBREOFFICE_PATH=C:\\Program Files\\LibreOffice\\program\\soffice.exe\n\n"
+        "Без LibreOffice конвертация DOC/DOCX в PDF невозможна."
+    )
+
+
+def find_tesseract_path() -> str:
+    """
+    Ищет tesseract.exe в:
+    1) переменной окружения TESSERACT_PATH
+    2) PATH
+    3) стандартных путях установки Windows
+    """
+    env_path = os.environ.get("TESSERACT_PATH", "").strip().strip('"')
+    if env_path:
+        if os.path.isdir(env_path):
+            candidate = os.path.join(env_path, "tesseract.exe")
+            if os.path.exists(candidate):
+                return candidate
+        elif os.path.isfile(env_path) and env_path.lower().endswith("tesseract.exe"):
+            return env_path
+
+    from_path = shutil.which("tesseract") or shutil.which("tesseract.exe")
+    if from_path:
+        return from_path
+
+    candidates = [
+        r"C:\Program Files\Tesseract-OCR\tesseract.exe",
+        r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe",
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+
+    raise FileNotFoundError(
+        "Tesseract OCR не найден (tesseract.exe).\n\n"
+        "Установите Tesseract и:\n"
+        "1) либо добавьте папку Tesseract-OCR в PATH,\n"
+        "2) либо задайте переменную окружения TESSERACT_PATH, например:\n"
+        "   TESSERACT_PATH=C:\\Program Files\\Tesseract-OCR\\tesseract.exe\n\n"
+        "Также установите языковой пакет rus."
+    )
+
+
+def ensure_tesseract_configured() -> str | None:
+    """
+    Пытается настроить tesseract для pytesseract / subprocess
+    Возвращает строку ошибки или None.
+    """
+    try:
+        tpath = find_tesseract_path()
+    except Exception as e:
+        return str(e)
+
+    # Добавим папку в PATH, чтобы любые subprocess находили tesseract
+    tdir = os.path.dirname(tpath)
+    os.environ["PATH"] = tdir + os.pathsep + os.environ.get("PATH", "")
+
+    # Если доступен pytesseract, выставим ему путь
+    try:
+        import pytesseract
+        import pytesseract as _pt
+        _pt.pytesseract.tesseract_cmd = tpath
+    except Exception:
+        pass
+
+    return None
 
 
 class GraphView(QGraphicsView):
@@ -131,7 +233,7 @@ class GraphWindow(QMainWindow):
             circle.setPen(pen_node)
             circle.setBrush(brush_node)
             circle.setZValue(1)
-            circle.setFlag(QGraphicsItem.ItemIsMovable, True)
+            circle.setFlag(QGraphicsItem.ItemIsMovable, False)
             self.scene.addItem(circle)
 
             name = labels.get(n, n)
@@ -178,6 +280,9 @@ class DocumentAnalyzerApp(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        # Настройка Tesseract
+        self._tesseract_warning = ensure_tesseract_configured()
+
         self.parser = DocumentParser(ocr_lang="rus")
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
         self.outputs_dir = os.path.join(self.base_dir, OUTPUTS_DIR_NAME)
@@ -196,6 +301,10 @@ class DocumentAnalyzerApp(QMainWindow):
         self._ui_timer = None
 
         self.initUI()
+
+        # Если tesseract не найден - предупреждение
+        if self._tesseract_warning:
+            QMessageBox.warning(self, "Tesseract OCR", self._tesseract_warning)
 
     def initUI(self):
         self.setWindowTitle("Анализ связей между документами")
@@ -344,7 +453,10 @@ class DocumentAnalyzerApp(QMainWindow):
 
     def convert_word_to_pdf(self, word_path: str) -> str:
         out_dir = tempfile.mkdtemp(prefix="lo_conv_")
-        soffice = r"D:\LibreOffice\program\soffice.exe"
+
+        # ищем soffice.exe
+        soffice = find_soffice_path()
+
         subprocess.run(
             [soffice, "--headless", "--nologo", "--nofirststartwizard",
              "--convert-to", "pdf", "--outdir", out_dir, word_path],
@@ -356,7 +468,7 @@ class DocumentAnalyzerApp(QMainWindow):
             raise FileNotFoundError(f"LibreOffice не создал PDF: {pdf_path}")
         return pdf_path
 
-    # ---------- outputs ----------
+    # outputs
     def save_txt(self, base_name: str, text: str) -> str:
         path = os.path.join(self.outputs_dir, self.safe_filename(base_name) + ".txt")
         with open(path, "w", encoding="utf-8") as f:
@@ -440,7 +552,9 @@ class DocumentAnalyzerApp(QMainWindow):
         self.ml_ready = True
         self._model_loading = False
 
-        self.ml_status_label.setText(f"LLM: загружена (модель: {DEFAULT_MODEL_ID})")
+        device_str = getattr(model, "device_str", "unknown")
+        self.ml_status_label.setText(
+            f"LLM: загружена (модель: {DEFAULT_MODEL_ID}, устройство: {device_str})")
         self.statusBar().showMessage("Модель загружена. Можно запускать анализ.")
         self._set_buttons_enabled(True)
 
@@ -519,9 +633,13 @@ class DocumentAnalyzerApp(QMainWindow):
                 parse_path = path
 
                 if ext in (".doc", ".docx"):
-                    parse_path = self.convert_word_to_pdf(path)
-                    report.append("Преобразование: Word → PDF выполнено")
-                    report.append(f"PDF: {parse_path}")
+                    try:
+                        parse_path = self.convert_word_to_pdf(path)
+                        report.append("Преобразование: Word → PDF выполнено")
+                        report.append(f"PDF: {parse_path}")
+                    except Exception as e:
+                        # Понятная ошибка для заказчика
+                        raise RuntimeError(str(e))
 
                 doc = self.parser.parse(parse_path)
                 text = doc.to_text()

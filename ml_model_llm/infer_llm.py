@@ -21,6 +21,14 @@ class LLMDocumentLinker:
         else:
             self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+        # Человекочитаемое имя устройства для UI/логов
+        self.device_str = str(self.device)
+
+        # Оптимальный dtype: на CUDA используем float16 (быстрее/меньше памяти),
+        # на CPU оставляем float32 (стабильнее)
+        self._torch_dtype = torch.float16 if self.device.type == "cuda" else torch.float32
+
+
         self.tokenizer = AutoTokenizer.from_pretrained(
             self.model_id_or_path,
             trust_remote_code=True
@@ -29,7 +37,8 @@ class LLMDocumentLinker:
         self.model = AutoModelForCausalLM.from_pretrained(
             self.model_id_or_path,
             trust_remote_code=True,
-            low_cpu_mem_usage=True
+            low_cpu_mem_usage=True,
+            torch_dtype=self._torch_dtype,
         ).to(self.device)
 
         self.model.eval()
