@@ -1,0 +1,3191 @@
+{
+    "path": "image.png",
+    "source_type": "image",
+    "pages": [
+        {
+            "blocks": [
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "СЧЕТ-ФАКТУРА",
+                                    "bounding_box": {
+                                        "left": 189.0,
+                                        "top": 73.0,
+                                        "right": 337.0,
+                                        "bottom": 86.0
+                                    }
+                                },
+                                {
+                                    "word": "№",
+                                    "bounding_box": {
+                                        "left": 341.0,
+                                        "top": 73.0,
+                                        "right": 359.0,
+                                        "bottom": 86.0
+                                    }
+                                },
+                                {
+                                    "word": "101",
+                                    "bounding_box": {
+                                        "left": 377.0,
+                                        "top": 73.0,
+                                        "right": 403.0,
+                                        "bottom": 86.0
+                                    }
+                                },
+                                {
+                                    "word": "от",
+                                    "bounding_box": {
+                                        "left": 576.0,
+                                        "top": 77.0,
+                                        "right": 593.0,
+                                        "bottom": 86.0
+                                    }
+                                },
+                                {
+                                    "word": "02",
+                                    "bounding_box": {
+                                        "left": 608.0,
+                                        "top": 73.0,
+                                        "right": 626.0,
+                                        "bottom": 86.0
+                                    }
+                                },
+                                {
+                                    "word": "октября",
+                                    "bounding_box": {
+                                        "left": 632.0,
+                                        "top": 73.0,
+                                        "right": 693.0,
+                                        "bottom": 92.0
+                                    }
+                                },
+                                {
+                                    "word": "2017",
+                                    "bounding_box": {
+                                        "left": 698.0,
+                                        "top": 73.0,
+                                        "right": 735.0,
+                                        "bottom": 86.0
+                                    }
+                                },
+                                {
+                                    "word": "г.",
+                                    "bounding_box": {
+                                        "left": 740.0,
+                                        "top": 77.0,
+                                        "right": 749.0,
+                                        "bottom": 86.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "ИСПРАВЛЕНИЕ",
+                                    "bounding_box": {
+                                        "left": 188.0,
+                                        "top": 101.0,
+                                        "right": 322.0,
+                                        "bottom": 114.0
+                                    }
+                                },
+                                {
+                                    "word": "№",
+                                    "bounding_box": {
+                                        "left": 328.0,
+                                        "top": 101.0,
+                                        "right": 345.0,
+                                        "bottom": 114.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 372.0,
+                                        "top": 109.0,
+                                        "right": 378.0,
+                                        "bottom": 110.0
+                                    }
+                                },
+                                {
+                                    "word": "от",
+                                    "bounding_box": {
+                                        "left": 576.0,
+                                        "top": 105.0,
+                                        "right": 593.0,
+                                        "bottom": 114.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 608.0,
+                                        "top": 109.0,
+                                        "right": 626.0,
+                                        "bottom": 110.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "‘постановлению",
+                                    "bounding_box": {
+                                        "left": 1185.0,
+                                        "top": 83.0,
+                                        "right": 1254.0,
+                                        "bottom": 88.0
+                                    }
+                                },
+                                {
+                                    "word": "Правительства",
+                                    "bounding_box": {
+                                        "left": 1257.0,
+                                        "top": 81.0,
+                                        "right": 1315.0,
+                                        "bottom": 90.0
+                                    }
+                                },
+                                {
+                                    "word": "Российской",
+                                    "bounding_box": {
+                                        "left": 1318.0,
+                                        "top": 80.0,
+                                        "right": 1363.0,
+                                        "bottom": 88.0
+                                    }
+                                },
+                                {
+                                    "word": "Федерации",
+                                    "bounding_box": {
+                                        "left": 1366.0,
+                                        "top": 81.0,
+                                        "right": 1432.0,
+                                        "bottom": 90.0
+                                    }
+                                },
+                                {
+                                    "word": "от",
+                                    "bounding_box": {
+                                        "left": 1413.0,
+                                        "top": 72.0,
+                                        "right": 1421.0,
+                                        "bottom": 96.0
+                                    }
+                                },
+                                {
+                                    "word": "26.12",
+                                    "bounding_box": {
+                                        "left": 1435.0,
+                                        "top": 81.0,
+                                        "right": 1444.0,
+                                        "bottom": 88.0
+                                    }
+                                },
+                                {
+                                    "word": "201",
+                                    "bounding_box": {
+                                        "left": 1447.0,
+                                        "top": 81.0,
+                                        "right": 1464.0,
+                                        "bottom": 88.0
+                                    }
+                                },
+                                {
+                                    "word": "321137",
+                                    "bounding_box": {
+                                        "left": 1467.0,
+                                        "top": 76.0,
+                                        "right": 1497.0,
+                                        "bottom": 88.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "(вре",
+                                    "bounding_box": {
+                                        "left": 1158.0,
+                                        "top": 92.0,
+                                        "right": 1183.0,
+                                        "bottom": 101.0
+                                    }
+                                },
+                                {
+                                    "word": "поспаноалня",
+                                    "bounding_box": {
+                                        "left": 1186.0,
+                                        "top": 81.0,
+                                        "right": 1243.0,
+                                        "bottom": 109.0
+                                    }
+                                },
+                                {
+                                    "word": "Правнильси",
+                                    "bounding_box": {
+                                        "left": 1249.0,
+                                        "top": 81.0,
+                                        "right": 1304.0,
+                                        "bottom": 109.0
+                                    }
+                                },
+                                {
+                                    "word": "Кот",
+                                    "bounding_box": {
+                                        "left": 1323.0,
+                                        "top": 92.0,
+                                        "right": 1343.0,
+                                        "bottom": 99.0
+                                    }
+                                },
+                                {
+                                    "word": "250520Р7",
+                                    "bounding_box": {
+                                        "left": 1346.0,
+                                        "top": 92.0,
+                                        "right": 1387.0,
+                                        "bottom": 99.0
+                                    }
+                                },
+                                {
+                                    "word": "№65",
+                                    "bounding_box": {
+                                        "left": 1390.0,
+                                        "top": 92.0,
+                                        "right": 1403.0,
+                                        "bottom": 99.0
+                                    }
+                                },
+                                {
+                                    "word": "ог",
+                                    "bounding_box": {
+                                        "left": 1406.0,
+                                        "top": 94.0,
+                                        "right": 1422.0,
+                                        "bottom": 99.0
+                                    }
+                                },
+                                {
+                                    "word": "190207",
+                                    "bounding_box": {
+                                        "left": 1425.0,
+                                        "top": 92.0,
+                                        "right": 1477.0,
+                                        "bottom": 99.0
+                                    }
+                                },
+                                {
+                                    "word": "ТЬ",
+                                    "bounding_box": {
+                                        "left": 1469.0,
+                                        "top": 81.0,
+                                        "right": 1476.0,
+                                        "bottom": 109.0
+                                    }
+                                },
+                                {
+                                    "word": "Е)",
+                                    "bounding_box": {
+                                        "left": 1480.0,
+                                        "top": 92.0,
+                                        "right": 1497.0,
+                                        "bottom": 101.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "Продавец",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 145.0,
+                                        "right": 118.0,
+                                        "bottom": 162.0
+                                    }
+                                },
+                                {
+                                    "word": "Общество",
+                                    "bounding_box": {
+                                        "left": 131.0,
+                                        "top": 145.0,
+                                        "right": 211.0,
+                                        "bottom": 161.0
+                                    }
+                                },
+                                {
+                                    "word": "с",
+                                    "bounding_box": {
+                                        "left": 216.0,
+                                        "top": 149.0,
+                                        "right": 224.0,
+                                        "bottom": 158.0
+                                    }
+                                },
+                                {
+                                    "word": "ограниченной",
+                                    "bounding_box": {
+                                        "left": 229.0,
+                                        "top": 145.0,
+                                        "right": 340.0,
+                                        "bottom": 161.0
+                                    }
+                                },
+                                {
+                                    "word": "ответственностью",
+                                    "bounding_box": {
+                                        "left": 346.0,
+                                        "top": 149.0,
+                                        "right": 489.0,
+                                        "bottom": 158.0
+                                    }
+                                },
+                                {
+                                    "word": "\"Продавец\"",
+                                    "bounding_box": {
+                                        "left": 495.0,
+                                        "top": 145.0,
+                                        "right": 585.0,
+                                        "bottom": 163.0
+                                    }
+                                },
+                                {
+                                    "word": "(ООО",
+                                    "bounding_box": {
+                                        "left": 591.0,
+                                        "top": 145.0,
+                                        "right": 637.0,
+                                        "bottom": 161.0
+                                    }
+                                },
+                                {
+                                    "word": "\"Продавец\"",
+                                    "bounding_box": {
+                                        "left": 643.0,
+                                        "top": 145.0,
+                                        "right": 739.0,
+                                        "bottom": 161.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "Адрес",
+                                    "bounding_box": {
+                                        "left": 41.0,
+                                        "top": 172.0,
+                                        "right": 90.0,
+                                        "bottom": 189.0
+                                    }
+                                },
+                                {
+                                    "word": "127000,",
+                                    "bounding_box": {
+                                        "left": 106.0,
+                                        "top": 172.0,
+                                        "right": 165.0,
+                                        "bottom": 188.0
+                                    }
+                                },
+                                {
+                                    "word": "г.",
+                                    "bounding_box": {
+                                        "left": 170.0,
+                                        "top": 176.0,
+                                        "right": 180.0,
+                                        "bottom": 185.0
+                                    }
+                                },
+                                {
+                                    "word": "Москва,",
+                                    "bounding_box": {
+                                        "left": 186.0,
+                                        "top": 172.0,
+                                        "right": 249.0,
+                                        "bottom": 188.0
+                                    }
+                                },
+                                {
+                                    "word": "Малый",
+                                    "bounding_box": {
+                                        "left": 255.0,
+                                        "top": 172.0,
+                                        "right": 311.0,
+                                        "bottom": 185.0
+                                    }
+                                },
+                                {
+                                    "word": "пер.",
+                                    "bounding_box": {
+                                        "left": 316.0,
+                                        "top": 176.0,
+                                        "right": 352.0,
+                                        "bottom": 191.0
+                                    }
+                                },
+                                {
+                                    "word": "д.",
+                                    "bounding_box": {
+                                        "left": 358.0,
+                                        "top": 176.0,
+                                        "right": 371.0,
+                                        "bottom": 189.0
+                                    }
+                                },
+                                {
+                                    "word": "1,",
+                                    "bounding_box": {
+                                        "left": 378.0,
+                                        "top": 172.0,
+                                        "right": 390.0,
+                                        "bottom": 188.0
+                                    }
+                                },
+                                {
+                                    "word": "стр.",
+                                    "bounding_box": {
+                                        "left": 396.0,
+                                        "top": 176.0,
+                                        "right": 425.0,
+                                        "bottom": 191.0
+                                    }
+                                },
+                                {
+                                    "word": "1,",
+                                    "bounding_box": {
+                                        "left": 432.0,
+                                        "top": 172.0,
+                                        "right": 444.0,
+                                        "bottom": 188.0
+                                    }
+                                },
+                                {
+                                    "word": "оф.",
+                                    "bounding_box": {
+                                        "left": 450.0,
+                                        "top": 172.0,
+                                        "right": 474.0,
+                                        "bottom": 191.0
+                                    }
+                                },
+                                {
+                                    "word": "10",
+                                    "bounding_box": {
+                                        "left": 481.0,
+                                        "top": 172.0,
+                                        "right": 498.0,
+                                        "bottom": 185.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "ИНН/КПП",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 200.0,
+                                        "right": 126.0,
+                                        "bottom": 213.0
+                                    }
+                                },
+                                {
+                                    "word": "продавца",
+                                    "bounding_box": {
+                                        "left": 131.0,
+                                        "top": 204.0,
+                                        "right": 204.0,
+                                        "bottom": 217.0
+                                    }
+                                },
+                                {
+                                    "word": "7700000001",
+                                    "bounding_box": {
+                                        "left": 217.0,
+                                        "top": 200.0,
+                                        "right": 309.0,
+                                        "bottom": 213.0
+                                    }
+                                },
+                                {
+                                    "word": "/",
+                                    "bounding_box": {
+                                        "left": 314.0,
+                                        "top": 200.0,
+                                        "right": 319.0,
+                                        "bottom": 213.0
+                                    }
+                                },
+                                {
+                                    "word": "770001001",
+                                    "bounding_box": {
+                                        "left": 325.0,
+                                        "top": 200.0,
+                                        "right": 407.0,
+                                        "bottom": 213.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "Общество",
+                                    "bounding_box": {
+                                        "left": 291.0,
+                                        "top": 228.0,
+                                        "right": 370.0,
+                                        "bottom": 245.0
+                                    }
+                                },
+                                {
+                                    "word": "с",
+                                    "bounding_box": {
+                                        "left": 376.0,
+                                        "top": 232.0,
+                                        "right": 383.0,
+                                        "bottom": 241.0
+                                    }
+                                },
+                                {
+                                    "word": "ограниченной",
+                                    "bounding_box": {
+                                        "left": 389.0,
+                                        "top": 228.0,
+                                        "right": 500.0,
+                                        "bottom": 245.0
+                                    }
+                                },
+                                {
+                                    "word": "ответственностью",
+                                    "bounding_box": {
+                                        "left": 505.0,
+                                        "top": 232.0,
+                                        "right": 649.0,
+                                        "bottom": 241.0
+                                    }
+                                },
+                                {
+                                    "word": "\"Продавец\"",
+                                    "bounding_box": {
+                                        "left": 655.0,
+                                        "top": 228.0,
+                                        "right": 744.0,
+                                        "bottom": 245.0
+                                    }
+                                },
+                                {
+                                    "word": "(ООО",
+                                    "bounding_box": {
+                                        "left": 751.0,
+                                        "top": 228.0,
+                                        "right": 796.0,
+                                        "bottom": 245.0
+                                    }
+                                },
+                                {
+                                    "word": "\"Продавец\")",
+                                    "bounding_box": {
+                                        "left": 802.0,
+                                        "top": 228.0,
+                                        "right": 899.0,
+                                        "bottom": 245.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "Грузоотправитель",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 250.0,
+                                        "right": 184.0,
+                                        "bottom": 267.0
+                                    }
+                                },
+                                {
+                                    "word": "и",
+                                    "bounding_box": {
+                                        "left": 189.0,
+                                        "top": 254.0,
+                                        "right": 199.0,
+                                        "bottom": 263.0
+                                    }
+                                },
+                                {
+                                    "word": "его",
+                                    "bounding_box": {
+                                        "left": 204.0,
+                                        "top": 254.0,
+                                        "right": 228.0,
+                                        "bottom": 263.0
+                                    }
+                                },
+                                {
+                                    "word": "адрес",
+                                    "bounding_box": {
+                                        "left": 233.0,
+                                        "top": 254.0,
+                                        "right": 276.0,
+                                        "bottom": 267.0
+                                    }
+                                },
+                                {
+                                    "word": "127000,",
+                                    "bounding_box": {
+                                        "left": 292.0,
+                                        "top": 250.0,
+                                        "right": 346.0,
+                                        "bottom": 263.0
+                                    }
+                                },
+                                {
+                                    "word": "г.",
+                                    "bounding_box": {
+                                        "left": 356.0,
+                                        "top": 254.0,
+                                        "right": 365.0,
+                                        "bottom": 263.0
+                                    }
+                                },
+                                {
+                                    "word": "Москва,",
+                                    "bounding_box": {
+                                        "left": 371.0,
+                                        "top": 250.0,
+                                        "right": 434.0,
+                                        "bottom": 266.0
+                                    }
+                                },
+                                {
+                                    "word": "Малый",
+                                    "bounding_box": {
+                                        "left": 440.0,
+                                        "top": 250.0,
+                                        "right": 497.0,
+                                        "bottom": 263.0
+                                    }
+                                },
+                                {
+                                    "word": "пер.",
+                                    "bounding_box": {
+                                        "left": 502.0,
+                                        "top": 254.0,
+                                        "right": 533.0,
+                                        "bottom": 266.0
+                                    }
+                                },
+                                {
+                                    "word": "д.",
+                                    "bounding_box": {
+                                        "left": 543.0,
+                                        "top": 254.0,
+                                        "right": 556.0,
+                                        "bottom": 266.0
+                                    }
+                                },
+                                {
+                                    "word": "1,",
+                                    "bounding_box": {
+                                        "left": 563.0,
+                                        "top": 250.0,
+                                        "right": 570.0,
+                                        "bottom": 263.0
+                                    }
+                                },
+                                {
+                                    "word": "стр.",
+                                    "bounding_box": {
+                                        "left": 581.0,
+                                        "top": 254.0,
+                                        "right": 610.0,
+                                        "bottom": 266.0
+                                    }
+                                },
+                                {
+                                    "word": "1,",
+                                    "bounding_box": {
+                                        "left": 617.0,
+                                        "top": 250.0,
+                                        "right": 624.0,
+                                        "bottom": 263.0
+                                    }
+                                },
+                                {
+                                    "word": "оф.",
+                                    "bounding_box": {
+                                        "left": 635.0,
+                                        "top": 250.0,
+                                        "right": 659.0,
+                                        "bottom": 266.0
+                                    }
+                                },
+                                {
+                                    "word": "10",
+                                    "bounding_box": {
+                                        "left": 667.0,
+                                        "top": 250.0,
+                                        "right": 684.0,
+                                        "bottom": 263.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "Общество",
+                                    "bounding_box": {
+                                        "left": 285.0,
+                                        "top": 278.0,
+                                        "right": 365.0,
+                                        "bottom": 295.0
+                                    }
+                                },
+                                {
+                                    "word": "с",
+                                    "bounding_box": {
+                                        "left": 370.0,
+                                        "top": 282.0,
+                                        "right": 378.0,
+                                        "bottom": 291.0
+                                    }
+                                },
+                                {
+                                    "word": "ограниченной",
+                                    "bounding_box": {
+                                        "left": 383.0,
+                                        "top": 278.0,
+                                        "right": 494.0,
+                                        "bottom": 295.0
+                                    }
+                                },
+                                {
+                                    "word": "ответственностью",
+                                    "bounding_box": {
+                                        "left": 500.0,
+                                        "top": 282.0,
+                                        "right": 643.0,
+                                        "bottom": 291.0
+                                    }
+                                },
+                                {
+                                    "word": "\"Покупатель\"",
+                                    "bounding_box": {
+                                        "left": 649.0,
+                                        "top": 278.0,
+                                        "right": 756.0,
+                                        "bottom": 295.0
+                                    }
+                                },
+                                {
+                                    "word": "(ООО",
+                                    "bounding_box": {
+                                        "left": 762.0,
+                                        "top": 278.0,
+                                        "right": 808.0,
+                                        "bottom": 295.0
+                                    }
+                                },
+                                {
+                                    "word": "\"Покупатель\")",
+                                    "bounding_box": {
+                                        "left": 814.0,
+                                        "top": 278.0,
+                                        "right": 926.0,
+                                        "bottom": 295.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "Грузополучатель",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 299.0,
+                                        "right": 175.0,
+                                        "bottom": 316.0
+                                    }
+                                },
+                                {
+                                    "word": "и",
+                                    "bounding_box": {
+                                        "left": 180.0,
+                                        "top": 303.0,
+                                        "right": 190.0,
+                                        "bottom": 312.0
+                                    }
+                                },
+                                {
+                                    "word": "его",
+                                    "bounding_box": {
+                                        "left": 195.0,
+                                        "top": 303.0,
+                                        "right": 219.0,
+                                        "bottom": 312.0
+                                    }
+                                },
+                                {
+                                    "word": "адрес",
+                                    "bounding_box": {
+                                        "left": 224.0,
+                                        "top": 303.0,
+                                        "right": 268.0,
+                                        "bottom": 316.0
+                                    }
+                                },
+                                {
+                                    "word": "127000,",
+                                    "bounding_box": {
+                                        "left": 286.0,
+                                        "top": 299.0,
+                                        "right": 345.0,
+                                        "bottom": 315.0
+                                    }
+                                },
+                                {
+                                    "word": "г.",
+                                    "bounding_box": {
+                                        "left": 350.0,
+                                        "top": 303.0,
+                                        "right": 359.0,
+                                        "bottom": 312.0
+                                    }
+                                },
+                                {
+                                    "word": "Москва,",
+                                    "bounding_box": {
+                                        "left": 365.0,
+                                        "top": 299.0,
+                                        "right": 429.0,
+                                        "bottom": 315.0
+                                    }
+                                },
+                                {
+                                    "word": "Большой",
+                                    "bounding_box": {
+                                        "left": 435.0,
+                                        "top": 299.0,
+                                        "right": 506.0,
+                                        "bottom": 312.0
+                                    }
+                                },
+                                {
+                                    "word": "пер.",
+                                    "bounding_box": {
+                                        "left": 511.0,
+                                        "top": 303.0,
+                                        "right": 546.0,
+                                        "bottom": 316.0
+                                    }
+                                },
+                                {
+                                    "word": "д.",
+                                    "bounding_box": {
+                                        "left": 552.0,
+                                        "top": 303.0,
+                                        "right": 565.0,
+                                        "bottom": 316.0
+                                    }
+                                },
+                                {
+                                    "word": "2,",
+                                    "bounding_box": {
+                                        "left": 571.0,
+                                        "top": 299.0,
+                                        "right": 584.0,
+                                        "bottom": 315.0
+                                    }
+                                },
+                                {
+                                    "word": "стр.",
+                                    "bounding_box": {
+                                        "left": 590.0,
+                                        "top": 303.0,
+                                        "right": 619.0,
+                                        "bottom": 316.0
+                                    }
+                                },
+                                {
+                                    "word": "2,",
+                                    "bounding_box": {
+                                        "left": 626.0,
+                                        "top": 299.0,
+                                        "right": 638.0,
+                                        "bottom": 315.0
+                                    }
+                                },
+                                {
+                                    "word": "оф.",
+                                    "bounding_box": {
+                                        "left": 644.0,
+                                        "top": 299.0,
+                                        "right": 668.0,
+                                        "bottom": 316.0
+                                    }
+                                },
+                                {
+                                    "word": "20",
+                                    "bounding_box": {
+                                        "left": 675.0,
+                                        "top": 299.0,
+                                        "right": 693.0,
+                                        "bottom": 312.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "К",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 327.0,
+                                        "right": 55.0,
+                                        "bottom": 340.0
+                                    }
+                                },
+                                {
+                                    "word": "платежно-расчетному",
+                                    "bounding_box": {
+                                        "left": 59.0,
+                                        "top": 331.0,
+                                        "right": 232.0,
+                                        "bottom": 344.0
+                                    }
+                                },
+                                {
+                                    "word": "документу",
+                                    "bounding_box": {
+                                        "left": 236.0,
+                                        "top": 331.0,
+                                        "right": 321.0,
+                                        "bottom": 344.0
+                                    }
+                                },
+                                {
+                                    "word": "№",
+                                    "bounding_box": {
+                                        "left": 326.0,
+                                        "top": 327.0,
+                                        "right": 343.0,
+                                        "bottom": 340.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 360.0,
+                                        "top": 335.0,
+                                        "right": 378.0,
+                                        "bottom": 336.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "Покупатель",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 355.0,
+                                        "right": 134.0,
+                                        "bottom": 372.0
+                                    }
+                                },
+                                {
+                                    "word": "Общество",
+                                    "bounding_box": {
+                                        "left": 153.0,
+                                        "top": 355.0,
+                                        "right": 233.0,
+                                        "bottom": 371.0
+                                    }
+                                },
+                                {
+                                    "word": "с",
+                                    "bounding_box": {
+                                        "left": 238.0,
+                                        "top": 359.0,
+                                        "right": 245.0,
+                                        "bottom": 368.0
+                                    }
+                                },
+                                {
+                                    "word": "ограниченной",
+                                    "bounding_box": {
+                                        "left": 251.0,
+                                        "top": 355.0,
+                                        "right": 362.0,
+                                        "bottom": 373.0
+                                    }
+                                },
+                                {
+                                    "word": "ответственностью",
+                                    "bounding_box": {
+                                        "left": 367.0,
+                                        "top": 359.0,
+                                        "right": 511.0,
+                                        "bottom": 368.0
+                                    }
+                                },
+                                {
+                                    "word": "\"Покупатель\"",
+                                    "bounding_box": {
+                                        "left": 517.0,
+                                        "top": 355.0,
+                                        "right": 623.0,
+                                        "bottom": 371.0
+                                    }
+                                },
+                                {
+                                    "word": "(ООО",
+                                    "bounding_box": {
+                                        "left": 629.0,
+                                        "top": 355.0,
+                                        "right": 675.0,
+                                        "bottom": 371.0
+                                    }
+                                },
+                                {
+                                    "word": "\"Покупатель\")",
+                                    "bounding_box": {
+                                        "left": 681.0,
+                                        "top": 355.0,
+                                        "right": 794.0,
+                                        "bottom": 371.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "Адрес",
+                                    "bounding_box": {
+                                        "left": 41.0,
+                                        "top": 382.0,
+                                        "right": 90.0,
+                                        "bottom": 399.0
+                                    }
+                                },
+                                {
+                                    "word": "127000,",
+                                    "bounding_box": {
+                                        "left": 106.0,
+                                        "top": 382.0,
+                                        "right": 165.0,
+                                        "bottom": 398.0
+                                    }
+                                },
+                                {
+                                    "word": "г.",
+                                    "bounding_box": {
+                                        "left": 170.0,
+                                        "top": 386.0,
+                                        "right": 180.0,
+                                        "bottom": 395.0
+                                    }
+                                },
+                                {
+                                    "word": "Москва,",
+                                    "bounding_box": {
+                                        "left": 186.0,
+                                        "top": 382.0,
+                                        "right": 249.0,
+                                        "bottom": 398.0
+                                    }
+                                },
+                                {
+                                    "word": "Большой",
+                                    "bounding_box": {
+                                        "left": 255.0,
+                                        "top": 382.0,
+                                        "right": 326.0,
+                                        "bottom": 395.0
+                                    }
+                                },
+                                {
+                                    "word": "пер.",
+                                    "bounding_box": {
+                                        "left": 331.0,
+                                        "top": 386.0,
+                                        "right": 367.0,
+                                        "bottom": 401.0
+                                    }
+                                },
+                                {
+                                    "word": "д.",
+                                    "bounding_box": {
+                                        "left": 372.0,
+                                        "top": 386.0,
+                                        "right": 385.0,
+                                        "bottom": 399.0
+                                    }
+                                },
+                                {
+                                    "word": "2,",
+                                    "bounding_box": {
+                                        "left": 392.0,
+                                        "top": 382.0,
+                                        "right": 404.0,
+                                        "bottom": 398.0
+                                    }
+                                },
+                                {
+                                    "word": "стр.",
+                                    "bounding_box": {
+                                        "left": 410.0,
+                                        "top": 386.0,
+                                        "right": 439.0,
+                                        "bottom": 401.0
+                                    }
+                                },
+                                {
+                                    "word": "2,",
+                                    "bounding_box": {
+                                        "left": 446.0,
+                                        "top": 382.0,
+                                        "right": 458.0,
+                                        "bottom": 398.0
+                                    }
+                                },
+                                {
+                                    "word": "оф.20",
+                                    "bounding_box": {
+                                        "left": 464.0,
+                                        "top": 382.0,
+                                        "right": 513.0,
+                                        "bottom": 401.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "ИНН/КПП",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 410.0,
+                                        "right": 126.0,
+                                        "bottom": 423.0
+                                    }
+                                },
+                                {
+                                    "word": "покупателя",
+                                    "bounding_box": {
+                                        "left": 131.0,
+                                        "top": 414.0,
+                                        "right": 221.0,
+                                        "bottom": 427.0
+                                    }
+                                },
+                                {
+                                    "word": "7700000002",
+                                    "bounding_box": {
+                                        "left": 238.0,
+                                        "top": 410.0,
+                                        "right": 330.0,
+                                        "bottom": 423.0
+                                    }
+                                },
+                                {
+                                    "word": "/",
+                                    "bounding_box": {
+                                        "left": 335.0,
+                                        "top": 410.0,
+                                        "right": 341.0,
+                                        "bottom": 423.0
+                                    }
+                                },
+                                {
+                                    "word": "770001001",
+                                    "bounding_box": {
+                                        "left": 346.0,
+                                        "top": 410.0,
+                                        "right": 429.0,
+                                        "bottom": 423.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "Валюта:",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 438.0,
+                                        "right": 106.0,
+                                        "bottom": 451.0
+                                    }
+                                },
+                                {
+                                    "word": "наименование,",
+                                    "bounding_box": {
+                                        "left": 112.0,
+                                        "top": 442.0,
+                                        "right": 228.0,
+                                        "bottom": 454.0
+                                    }
+                                },
+                                {
+                                    "word": "код",
+                                    "bounding_box": {
+                                        "left": 234.0,
+                                        "top": 442.0,
+                                        "right": 260.0,
+                                        "bottom": 455.0
+                                    }
+                                },
+                                {
+                                    "word": "Российский",
+                                    "bounding_box": {
+                                        "left": 280.0,
+                                        "top": 438.0,
+                                        "right": 373.0,
+                                        "bottom": 451.0
+                                    }
+                                },
+                                {
+                                    "word": "рубль,",
+                                    "bounding_box": {
+                                        "left": 378.0,
+                                        "top": 438.0,
+                                        "right": 426.0,
+                                        "bottom": 457.0
+                                    }
+                                },
+                                {
+                                    "word": "643",
+                                    "bounding_box": {
+                                        "left": 433.0,
+                                        "top": 438.0,
+                                        "right": 460.0,
+                                        "bottom": 451.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "Идентификатор",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 466.0,
+                                        "right": 166.0,
+                                        "bottom": 483.0
+                                    }
+                                },
+                                {
+                                    "word": "государственного",
+                                    "bounding_box": {
+                                        "left": 171.0,
+                                        "top": 470.0,
+                                        "right": 310.0,
+                                        "bottom": 483.0
+                                    }
+                                },
+                                {
+                                    "word": "контракта,",
+                                    "bounding_box": {
+                                        "left": 315.0,
+                                        "top": 470.0,
+                                        "right": 397.0,
+                                        "bottom": 483.0
+                                    }
+                                },
+                                {
+                                    "word": "договора",
+                                    "bounding_box": {
+                                        "left": 403.0,
+                                        "top": 470.0,
+                                        "right": 474.0,
+                                        "bottom": 483.0
+                                    }
+                                },
+                                {
+                                    "word": "(соглашения)",
+                                    "bounding_box": {
+                                        "left": 479.0,
+                                        "top": 466.0,
+                                        "right": 584.0,
+                                        "bottom": 483.0
+                                    }
+                                },
+                                {
+                                    "word": "(при",
+                                    "bounding_box": {
+                                        "left": 589.0,
+                                        "top": 466.0,
+                                        "right": 624.0,
+                                        "bottom": 483.0
+                                    }
+                                },
+                                {
+                                    "word": "наличии)",
+                                    "bounding_box": {
+                                        "left": 629.0,
+                                        "top": 466.0,
+                                        "right": 702.0,
+                                        "bottom": 483.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 714.0,
+                                        "top": 474.0,
+                                        "right": 732.0,
+                                        "bottom": 475.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "Единица",
+                                    "bounding_box": {
+                                        "left": 396.0,
+                                        "top": 502.0,
+                                        "right": 458.0,
+                                        "bottom": 526.0
+                                    }
+                                },
+                                {
+                                    "word": "Стоимость",
+                                    "bounding_box": {
+                                        "left": 648.0,
+                                        "top": 508.0,
+                                        "right": 716.0,
+                                        "bottom": 518.0
+                                    }
+                                },
+                                {
+                                    "word": "товаров!",
+                                    "bounding_box": {
+                                        "left": 719.0,
+                                        "top": 511.0,
+                                        "right": 768.0,
+                                        "bottom": 521.0
+                                    }
+                                },
+                                {
+                                    "word": "том",
+                                    "bounding_box": {
+                                        "left": 799.0,
+                                        "top": 520.0,
+                                        "right": 822.0,
+                                        "bottom": 527.0
+                                    }
+                                },
+                                {
+                                    "word": "Сумма",
+                                    "bounding_box": {
+                                        "left": 931.0,
+                                        "top": 508.0,
+                                        "right": 973.0,
+                                        "bottom": 521.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 987.0,
+                                        "top": 501.0,
+                                        "right": 997.0,
+                                        "bottom": 531.0
+                                    }
+                                },
+                                {
+                                    "word": "стоимость",
+                                    "bounding_box": {
+                                        "left": 1005.0,
+                                        "top": 517.0,
+                                        "right": 1073.0,
+                                        "bottom": 527.0
+                                    }
+                                },
+                                {
+                                    "word": "товаров",
+                                    "bounding_box": {
+                                        "left": 1077.0,
+                                        "top": 520.0,
+                                        "right": 1126.0,
+                                        "bottom": 527.0
+                                    }
+                                },
+                                {
+                                    "word": "\"Страна",
+                                    "bounding_box": {
+                                        "left": 1156.0,
+                                        "top": 506.0,
+                                        "right": 1201.0,
+                                        "bottom": 519.0
+                                    }
+                                },
+                                {
+                                    "word": "происхождения",
+                                    "bounding_box": {
+                                        "left": 1205.0,
+                                        "top": 509.0,
+                                        "right": 1303.0,
+                                        "bottom": 519.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "Наименование",
+                                    "bounding_box": {
+                                        "left": 63.0,
+                                        "top": 526.0,
+                                        "right": 155.0,
+                                        "bottom": 536.0
+                                    }
+                                },
+                                {
+                                    "word": "товара",
+                                    "bounding_box": {
+                                        "left": 159.0,
+                                        "top": 529.0,
+                                        "right": 201.0,
+                                        "bottom": 539.0
+                                    }
+                                },
+                                {
+                                    "word": "(описание",
+                                    "bounding_box": {
+                                        "left": 205.0,
+                                        "top": 526.0,
+                                        "right": 268.0,
+                                        "bottom": 539.0
+                                    }
+                                },
+                                {
+                                    "word": "Код",
+                                    "bounding_box": {
+                                        "left": 309.0,
+                                        "top": 517.0,
+                                        "right": 340.0,
+                                        "bottom": 543.0
+                                    }
+                                },
+                                {
+                                    "word": "‘измерения.",
+                                    "bounding_box": {
+                                        "left": 390.0,
+                                        "top": 517.0,
+                                        "right": 465.0,
+                                        "bottom": 542.0
+                                    }
+                                },
+                                {
+                                    "word": "Коли-",
+                                    "bounding_box": {
+                                        "left": 510.0,
+                                        "top": 526.0,
+                                        "right": 547.0,
+                                        "bottom": 536.0
+                                    }
+                                },
+                                {
+                                    "word": "Цена",
+                                    "bounding_box": {
+                                        "left": 558.0,
+                                        "top": 526.0,
+                                        "right": 590.0,
+                                        "bottom": 539.0
+                                    }
+                                },
+                                {
+                                    "word": "(тариф)|",
+                                    "bounding_box": {
+                                        "left": 594.0,
+                                        "top": 526.0,
+                                        "right": 641.0,
+                                        "bottom": 539.0
+                                    }
+                                },
+                                {
+                                    "word": "(работ,",
+                                    "bounding_box": {
+                                        "left": 663.0,
+                                        "top": 526.0,
+                                        "right": 705.0,
+                                        "bottom": 539.0
+                                    }
+                                },
+                                {
+                                    "word": "услуг),",
+                                    "bounding_box": {
+                                        "left": 709.0,
+                                        "top": 526.0,
+                                        "right": 752.0,
+                                        "bottom": 539.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 766.0,
+                                        "top": 517.0,
+                                        "right": 775.0,
+                                        "bottom": 548.0
+                                    }
+                                },
+                                {
+                                    "word": "иле",
+                                    "bounding_box": {
+                                        "left": 785.0,
+                                        "top": 537.0,
+                                        "right": 821.0,
+                                        "bottom": 544.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 831.0,
+                                        "top": 517.0,
+                                        "right": 840.0,
+                                        "bottom": 548.0
+                                    }
+                                },
+                                {
+                                    "word": "Нал",
+                                    "bounding_box": {
+                                        "left": 840.0,
+                                        "top": 534.0,
+                                        "right": 865.0,
+                                        "bottom": 544.0
+                                    }
+                                },
+                                {
+                                    "word": "‘налога,",
+                                    "bounding_box": {
+                                        "left": 925.0,
+                                        "top": 517.0,
+                                        "right": 975.0,
+                                        "bottom": 542.0
+                                    }
+                                },
+                                {
+                                    "word": "работ,",
+                                    "bounding_box": {
+                                        "left": 1021.0,
+                                        "top": 534.0,
+                                        "right": 1063.0,
+                                        "bottom": 547.0
+                                    }
+                                },
+                                {
+                                    "word": "р",
+                                    "bounding_box": {
+                                        "left": 1067.0,
+                                        "top": 520.0,
+                                        "right": 1111.0,
+                                        "bottom": 547.0
+                                    }
+                                },
+                                {
+                                    "word": "товара",
+                                    "bounding_box": {
+                                        "left": 1205.0,
+                                        "top": 516.0,
+                                        "right": 1250.0,
+                                        "bottom": 541.0
+                                    }
+                                },
+                                {
+                                    "word": " вгистрационный",
+                                    "bounding_box": {
+                                        "left": 1335.0,
+                                        "top": 534.0,
+                                        "right": 1447.0,
+                                        "bottom": 547.0
+                                    }
+                                },
+                                {
+                                    "word": "номер",
+                                    "bounding_box": {
+                                        "left": 1452.0,
+                                        "top": 537.0,
+                                        "right": 1490.0,
+                                        "bottom": 547.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "выполненных",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 546.0,
+                                        "right": 130.0,
+                                        "bottom": 553.0
+                                    }
+                                },
+                                {
+                                    "word": "работ,",
+                                    "bounding_box": {
+                                        "left": 133.0,
+                                        "top": 543.0,
+                                        "right": 170.0,
+                                        "bottom": 556.0
+                                    }
+                                },
+                                {
+                                    "word": "оказанных",
+                                    "bounding_box": {
+                                        "left": 175.0,
+                                        "top": 546.0,
+                                        "right": 242.0,
+                                        "bottom": 553.0
+                                    }
+                                },
+                                {
+                                    "word": "услуг),",
+                                    "bounding_box": {
+                                        "left": 246.0,
+                                        "top": 543.0,
+                                        "right": 289.0,
+                                        "bottom": 556.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 294.0,
+                                        "top": 532.0,
+                                        "right": 302.0,
+                                        "bottom": 560.0
+                                    }
+                                },
+                                {
+                                    "word": "вида",
+                                    "bounding_box": {
+                                        "left": 310.0,
+                                        "top": 546.0,
+                                        "right": 339.0,
+                                        "bottom": 556.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 350.0,
+                                        "top": 532.0,
+                                        "right": 360.0,
+                                        "bottom": 560.0
+                                    }
+                                },
+                                {
+                                    "word": "к",
+                                    "bounding_box": {
+                                        "left": 371.0,
+                                        "top": 548.0,
+                                        "right": 379.0,
+                                        "bottom": 555.0
+                                    }
+                                },
+                                {
+                                    "word": "условное",
+                                    "bounding_box": {
+                                        "left": 420.0,
+                                        "top": 548.0,
+                                        "right": 478.0,
+                                        "bottom": 558.0
+                                    }
+                                },
+                                {
+                                    "word": "|чество|",
+                                    "bounding_box": {
+                                        "left": 507.0,
+                                        "top": 546.0,
+                                        "right": 549.0,
+                                        "bottom": 553.0
+                                    }
+                                },
+                                {
+                                    "word": "заединицу",
+                                    "bounding_box": {
+                                        "left": 565.0,
+                                        "top": 546.0,
+                                        "right": 635.0,
+                                        "bottom": 556.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 640.0,
+                                        "top": 534.0,
+                                        "right": 649.0,
+                                        "bottom": 565.0
+                                    }
+                                },
+                                {
+                                    "word": "имущественных",
+                                    "bounding_box": {
+                                        "left": 656.0,
+                                        "top": 546.0,
+                                        "right": 760.0,
+                                        "bottom": 556.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 767.0,
+                                        "top": 534.0,
+                                        "right": 776.0,
+                                        "bottom": 565.0
+                                    }
+                                },
+                                {
+                                    "word": "^",
+                                    "bounding_box": {
+                                        "left": 784.0,
+                                        "top": 554.0,
+                                        "right": 790.0,
+                                        "bottom": 561.0
+                                    }
+                                },
+                                {
+                                    "word": "ставка",
+                                    "bounding_box": {
+                                        "left": 853.0,
+                                        "top": 554.0,
+                                        "right": 893.0,
+                                        "bottom": 561.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 904.0,
+                                        "top": 536.0,
+                                        "right": 915.0,
+                                        "bottom": 565.0
+                                    }
+                                },
+                                {
+                                    "word": "ПРЕдЬЯВ-",
+                                    "bounding_box": {
+                                        "left": 924.0,
+                                        "top": 546.0,
+                                        "right": 980.0,
+                                        "bottom": 556.0
+                                    }
+                                },
+                                {
+                                    "word": "сть,",
+                                    "bounding_box": {
+                                        "left": 1034.0,
+                                        "top": 536.0,
+                                        "right": 1064.0,
+                                        "bottom": 565.0
+                                    }
+                                },
+                                {
+                                    "word": "и",
+                                    "bounding_box": {
+                                        "left": 1105.0,
+                                        "top": 554.0,
+                                        "right": 1112.0,
+                                        "bottom": 561.0
+                                    }
+                                },
+                                {
+                                    "word": "а",
+                                    "bounding_box": {
+                                        "left": 1195.0,
+                                        "top": 553.0,
+                                        "right": 1201.0,
+                                        "bottom": 555.0
+                                    }
+                                },
+                                {
+                                    "word": "таможенной",
+                                    "bounding_box": {
+                                        "left": 1335.0,
+                                        "top": 551.0,
+                                        "right": 1413.0,
+                                        "bottom": 561.0
+                                    }
+                                },
+                                {
+                                    "word": "декла",
+                                    "bounding_box": {
+                                        "left": 1424.0,
+                                        "top": 554.0,
+                                        "right": 1452.0,
+                                        "bottom": 561.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "имущественного",
+                                    "bounding_box": {
+                                        "left": 93.0,
+                                        "top": 563.0,
+                                        "right": 199.0,
+                                        "bottom": 573.0
+                                    }
+                                },
+                                {
+                                    "word": "права.",
+                                    "bounding_box": {
+                                        "left": 203.0,
+                                        "top": 563.0,
+                                        "right": 239.0,
+                                        "bottom": 573.0
+                                    }
+                                },
+                                {
+                                    "word": "товара",
+                                    "bounding_box": {
+                                        "left": 303.0,
+                                        "top": 563.0,
+                                        "right": 345.0,
+                                        "bottom": 573.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 352.0,
+                                        "top": 549.0,
+                                        "right": 360.0,
+                                        "bottom": 577.0
+                                    }
+                                },
+                                {
+                                    "word": "о",
+                                    "bounding_box": {
+                                        "left": 371.0,
+                                        "top": 565.0,
+                                        "right": 378.0,
+                                        "bottom": 572.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 387.0,
+                                        "top": 549.0,
+                                        "right": 400.0,
+                                        "bottom": 577.0
+                                    }
+                                },
+                                {
+                                    "word": "обозначение",
+                                    "bounding_box": {
+                                        "left": 410.0,
+                                        "top": 562.0,
+                                        "right": 488.0,
+                                        "bottom": 572.0
+                                    }
+                                },
+                                {
+                                    "word": "|(объем)|",
+                                    "bounding_box": {
+                                        "left": 505.0,
+                                        "top": 560.0,
+                                        "right": 552.0,
+                                        "bottom": 573.0
+                                    }
+                                },
+                                {
+                                    "word": "измерения",
+                                    "bounding_box": {
+                                        "left": 566.0,
+                                        "top": 563.0,
+                                        "right": 633.0,
+                                        "bottom": 573.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 639.0,
+                                        "top": 549.0,
+                                        "right": 647.0,
+                                        "bottom": 577.0
+                                    }
+                                },
+                                {
+                                    "word": "прав",
+                                    "bounding_box": {
+                                        "left": 654.0,
+                                        "top": 563.0,
+                                        "right": 683.0,
+                                        "bottom": 573.0
+                                    }
+                                },
+                                {
+                                    "word": "без",
+                                    "bounding_box": {
+                                        "left": 687.0,
+                                        "top": 560.0,
+                                        "right": 707.0,
+                                        "bottom": 570.0
+                                    }
+                                },
+                                {
+                                    "word": "налога-",
+                                    "bounding_box": {
+                                        "left": 711.0,
+                                        "top": 563.0,
+                                        "right": 762.0,
+                                        "bottom": 570.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 770.0,
+                                        "top": 549.0,
+                                        "right": 778.0,
+                                        "bottom": 577.0
+                                    }
+                                },
+                                {
+                                    "word": "“М",
+                                    "bounding_box": {
+                                        "left": 791.0,
+                                        "top": 554.0,
+                                        "right": 823.0,
+                                        "bottom": 564.0
+                                    }
+                                },
+                                {
+                                    "word": "ивмая",
+                                    "bounding_box": {
+                                        "left": 930.0,
+                                        "top": 563.0,
+                                        "right": 974.0,
+                                        "bottom": 570.0
+                                    }
+                                },
+                                {
+                                    "word": "имущественных",
+                                    "bounding_box": {
+                                        "left": 997.0,
+                                        "top": 554.0,
+                                        "right": 1101.0,
+                                        "bottom": 564.0
+                                    }
+                                },
+                                {
+                                    "word": "праз\\",
+                                    "bounding_box": {
+                                        "left": 1113.0,
+                                        "top": 554.0,
+                                        "right": 1133.0,
+                                        "bottom": 564.0
+                                    }
+                                },
+                                {
+                                    "word": "цифровой|",
+                                    "bounding_box": {
+                                        "left": 1139.0,
+                                        "top": 553.0,
+                                        "right": 1202.0,
+                                        "bottom": 566.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 1221.0,
+                                        "top": 544.0,
+                                        "right": 1231.0,
+                                        "bottom": 574.0
+                                    }
+                                },
+                                {
+                                    "word": "краткое",
+                                    "bounding_box": {
+                                        "left": 1240.0,
+                                        "top": 556.0,
+                                        "right": 1288.0,
+                                        "bottom": 566.0
+                                    }
+                                },
+                                {
+                                    "word": "‘декларации:",
+                                    "bounding_box": {
+                                        "left": 1416.0,
+                                        "top": 554.0,
+                                        "right": 1490.0,
+                                        "bottom": 564.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "д",
+                                    "bounding_box": {
+                                        "left": 371.0,
+                                        "top": 582.0,
+                                        "right": 379.0,
+                                        "bottom": 592.0
+                                    }
+                                },
+                                {
+                                    "word": "|(вациональное)",
+                                    "bounding_box": {
+                                        "left": 400.0,
+                                        "top": 579.0,
+                                        "right": 498.0,
+                                        "bottom": 592.0
+                                    }
+                                },
+                                {
+                                    "word": "всего",
+                                    "bounding_box": {
+                                        "left": 691.0,
+                                        "top": 567.0,
+                                        "right": 725.0,
+                                        "bottom": 595.0
+                                    }
+                                },
+                                {
+                                    "word": "акциза",
+                                    "bounding_box": {
+                                        "left": 783.0,
+                                        "top": 572.0,
+                                        "right": 825.0,
+                                        "bottom": 582.0
+                                    }
+                                },
+                                {
+                                    "word": "[покупателю",
+                                    "bounding_box": {
+                                        "left": 914.0,
+                                        "top": 580.0,
+                                        "right": 990.0,
+                                        "bottom": 590.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 992.0,
+                                        "top": 565.0,
+                                        "right": 1000.0,
+                                        "bottom": 594.0
+                                    }
+                                },
+                                {
+                                    "word": "С",
+                                    "bounding_box": {
+                                        "left": 1012.0,
+                                        "top": 572.0,
+                                        "right": 1018.0,
+                                        "bottom": 579.0
+                                    }
+                                },
+                                {
+                                    "word": "НАЛОГОМ",
+                                    "bounding_box": {
+                                        "left": 1022.0,
+                                        "top": 572.0,
+                                        "right": 1074.0,
+                                        "bottom": 579.0
+                                    }
+                                },
+                                {
+                                    "word": "-",
+                                    "bounding_box": {
+                                        "left": 1078.0,
+                                        "top": 575.0,
+                                        "right": 1082.0,
+                                        "bottom": 576.0
+                                    }
+                                },
+                                {
+                                    "word": "всего",
+                                    "bounding_box": {
+                                        "left": 1086.0,
+                                        "top": 572.0,
+                                        "right": 1119.0,
+                                        "bottom": 579.0
+                                    }
+                                },
+                                {
+                                    "word": "вод",
+                                    "bounding_box": {
+                                        "left": 1160.0,
+                                        "top": 574.0,
+                                        "right": 1181.0,
+                                        "bottom": 584.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 1195.0,
+                                        "top": 561.0,
+                                        "right": 1208.0,
+                                        "bottom": 589.0
+                                    }
+                                },
+                                {
+                                    "word": "наименование",
+                                    "bounding_box": {
+                                        "left": 1219.0,
+                                        "top": 574.0,
+                                        "right": 1309.0,
+                                        "bottom": 581.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "т",
+                                    "bounding_box": {
+                                        "left": 164.0,
+                                        "top": 599.0,
+                                        "right": 168.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "[2",
+                                    "bounding_box": {
+                                        "left": 320.0,
+                                        "top": 599.0,
+                                        "right": 377.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "Е",
+                                    "bounding_box": {
+                                        "left": 444.0,
+                                        "top": 599.0,
+                                        "right": 454.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "Е",
+                                    "bounding_box": {
+                                        "left": 526.0,
+                                        "top": 599.0,
+                                        "right": 531.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "т",
+                                    "bounding_box": {
+                                        "left": 597.0,
+                                        "top": 599.0,
+                                        "right": 603.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "5",
+                                    "bounding_box": {
+                                        "left": 706.0,
+                                        "top": 599.0,
+                                        "right": 710.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "с",
+                                    "bounding_box": {
+                                        "left": 801.0,
+                                        "top": 599.0,
+                                        "right": 806.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "7",
+                                    "bounding_box": {
+                                        "left": 870.0,
+                                        "top": 599.0,
+                                        "right": 875.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "8",
+                                    "bounding_box": {
+                                        "left": 950.0,
+                                        "top": 599.0,
+                                        "right": 955.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "Е",
+                                    "bounding_box": {
+                                        "left": 1063.0,
+                                        "top": 599.0,
+                                        "right": 1068.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "о",
+                                    "bounding_box": {
+                                        "left": 1166.0,
+                                        "top": 599.0,
+                                        "right": 1176.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "т",
+                                    "bounding_box": {
+                                        "left": 1257.0,
+                                        "top": 599.0,
+                                        "right": 1272.0,
+                                        "bottom": 607.0
+                                    }
+                                },
+                                {
+                                    "word": "го",
+                                    "bounding_box": {
+                                        "left": 1408.0,
+                                        "top": 599.0,
+                                        "right": 1417.0,
+                                        "bottom": 607.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "[Сетевой",
+                                    "bounding_box": {
+                                        "left": 38.0,
+                                        "top": 618.0,
+                                        "right": 96.0,
+                                        "bottom": 629.0
+                                    }
+                                },
+                                {
+                                    "word": "коммутатор",
+                                    "bounding_box": {
+                                        "left": 101.0,
+                                        "top": 621.0,
+                                        "right": 184.0,
+                                        "bottom": 633.0
+                                    }
+                                },
+                                {
+                                    "word": "8-портовый",
+                                    "bounding_box": {
+                                        "left": 189.0,
+                                        "top": 618.0,
+                                        "right": 272.0,
+                                        "bottom": 633.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 287.0,
+                                        "top": 614.0,
+                                        "right": 301.0,
+                                        "bottom": 647.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 316.0,
+                                        "top": 624.0,
+                                        "right": 332.0,
+                                        "bottom": 625.0
+                                    }
+                                },
+                                {
+                                    "word": "|796",
+                                    "bounding_box": {
+                                        "left": 363.0,
+                                        "top": 626.0,
+                                        "right": 387.0,
+                                        "bottom": 637.0
+                                    }
+                                },
+                                {
+                                    "word": "шт",
+                                    "bounding_box": {
+                                        "left": 437.0,
+                                        "top": 614.0,
+                                        "right": 461.0,
+                                        "bottom": 647.0
+                                    }
+                                },
+                                {
+                                    "word": "2",
+                                    "bounding_box": {
+                                        "left": 525.0,
+                                        "top": 626.0,
+                                        "right": 532.0,
+                                        "bottom": 637.0
+                                    }
+                                },
+                                {
+                                    "word": "1694.92",
+                                    "bounding_box": {
+                                        "left": 590.0,
+                                        "top": 626.0,
+                                        "right": 642.0,
+                                        "bottom": 637.0
+                                    }
+                                },
+                                {
+                                    "word": "ззаоаз",
+                                    "bounding_box": {
+                                        "left": 716.0,
+                                        "top": 626.0,
+                                        "right": 770.0,
+                                        "bottom": 637.0
+                                    }
+                                },
+                                {
+                                    "word": "0",
+                                    "bounding_box": {
+                                        "left": 794.0,
+                                        "top": 617.0,
+                                        "right": 807.0,
+                                        "bottom": 627.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 829.0,
+                                        "top": 620.0,
+                                        "right": 830.0,
+                                        "bottom": 645.0
+                                    }
+                                },
+                                {
+                                    "word": "18%",
+                                    "bounding_box": {
+                                        "left": 859.0,
+                                        "top": 626.0,
+                                        "right": 888.0,
+                                        "bottom": 637.0
+                                    }
+                                },
+                                {
+                                    "word": "610.17",
+                                    "bounding_box": {
+                                        "left": 947.0,
+                                        "top": 626.0,
+                                        "right": 993.0,
+                                        "bottom": 637.0
+                                    }
+                                },
+                                {
+                                    "word": "4000.00",
+                                    "bounding_box": {
+                                        "left": 1080.0,
+                                        "top": 626.0,
+                                        "right": 1126.0,
+                                        "bottom": 637.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 1163.0,
+                                        "top": 632.0,
+                                        "right": 1179.0,
+                                        "bottom": 633.0
+                                    }
+                                },
+                                {
+                                    "word": "-",
+                                    "bounding_box": {
+                                        "left": 1258.0,
+                                        "top": 631.0,
+                                        "right": 1270.0,
+                                        "bottom": 632.0
+                                    }
+                                },
+                                {
+                                    "word": "-",
+                                    "bounding_box": {
+                                        "left": 1406.0,
+                                        "top": 631.0,
+                                        "right": 1419.0,
+                                        "bottom": 632.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "[Сетевой",
+                                    "bounding_box": {
+                                        "left": 38.0,
+                                        "top": 657.0,
+                                        "right": 96.0,
+                                        "bottom": 668.0
+                                    }
+                                },
+                                {
+                                    "word": "коммутатор",
+                                    "bounding_box": {
+                                        "left": 101.0,
+                                        "top": 660.0,
+                                        "right": 184.0,
+                                        "bottom": 672.0
+                                    }
+                                },
+                                {
+                                    "word": "16-портовый",
+                                    "bounding_box": {
+                                        "left": 190.0,
+                                        "top": 657.0,
+                                        "right": 280.0,
+                                        "bottom": 672.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 292.0,
+                                        "top": 653.0,
+                                        "right": 304.0,
+                                        "bottom": 685.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 316.0,
+                                        "top": 663.0,
+                                        "right": 332.0,
+                                        "bottom": 664.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 343.0,
+                                        "top": 653.0,
+                                        "right": 354.0,
+                                        "bottom": 685.0
+                                    }
+                                },
+                                {
+                                    "word": "796",
+                                    "bounding_box": {
+                                        "left": 363.0,
+                                        "top": 664.0,
+                                        "right": 387.0,
+                                        "bottom": 675.0
+                                    }
+                                },
+                                {
+                                    "word": "шт",
+                                    "bounding_box": {
+                                        "left": 433.0,
+                                        "top": 653.0,
+                                        "right": 457.0,
+                                        "bottom": 685.0
+                                    }
+                                },
+                                {
+                                    "word": "1",
+                                    "bounding_box": {
+                                        "left": 526.0,
+                                        "top": 664.0,
+                                        "right": 532.0,
+                                        "bottom": 675.0
+                                    }
+                                },
+                                {
+                                    "word": "4406.7",
+                                    "bounding_box": {
+                                        "left": 584.0,
+                                        "top": 653.0,
+                                        "right": 634.0,
+                                        "bottom": 685.0
+                                    }
+                                },
+                                {
+                                    "word": "4406.78]",
+                                    "bounding_box": {
+                                        "left": 716.0,
+                                        "top": 664.0,
+                                        "right": 761.0,
+                                        "bottom": 675.0
+                                    }
+                                },
+                                {
+                                    "word": "68",
+                                    "bounding_box": {
+                                        "left": 794.0,
+                                        "top": 656.0,
+                                        "right": 825.0,
+                                        "bottom": 683.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 828.0,
+                                        "top": 652.0,
+                                        "right": 841.0,
+                                        "bottom": 687.0
+                                    }
+                                },
+                                {
+                                    "word": "18%",
+                                    "bounding_box": {
+                                        "left": 859.0,
+                                        "top": 664.0,
+                                        "right": 888.0,
+                                        "bottom": 675.0
+                                    }
+                                },
+                                {
+                                    "word": "793.22",
+                                    "bounding_box": {
+                                        "left": 948.0,
+                                        "top": 664.0,
+                                        "right": 993.0,
+                                        "bottom": 675.0
+                                    }
+                                },
+                                {
+                                    "word": "5200.0]",
+                                    "bounding_box": {
+                                        "left": 1081.0,
+                                        "top": 664.0,
+                                        "right": 1126.0,
+                                        "bottom": 675.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 1163.0,
+                                        "top": 670.0,
+                                        "right": 1179.0,
+                                        "bottom": 671.0
+                                    }
+                                },
+                                {
+                                    "word": "-",
+                                    "bounding_box": {
+                                        "left": 1258.0,
+                                        "top": 670.0,
+                                        "right": 1270.0,
+                                        "bottom": 671.0
+                                    }
+                                },
+                                {
+                                    "word": "_",
+                                    "bounding_box": {
+                                        "left": 1406.0,
+                                        "top": 670.0,
+                                        "right": 1419.0,
+                                        "bottom": 671.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "[Точка",
+                                    "bounding_box": {
+                                        "left": 38.0,
+                                        "top": 695.0,
+                                        "right": 79.0,
+                                        "bottom": 706.0
+                                    }
+                                },
+                                {
+                                    "word": "доступа",
+                                    "bounding_box": {
+                                        "left": 82.0,
+                                        "top": 698.0,
+                                        "right": 139.0,
+                                        "bottom": 710.0
+                                    }
+                                },
+                                {
+                                    "word": "\\А-ЕЕ",
+                                    "bounding_box": {
+                                        "left": 143.0,
+                                        "top": 694.0,
+                                        "right": 183.0,
+                                        "bottom": 706.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 316.0,
+                                        "top": 701.0,
+                                        "right": 332.0,
+                                        "bottom": 702.0
+                                    }
+                                },
+                                {
+                                    "word": "|755",
+                                    "bounding_box": {
+                                        "left": 363.0,
+                                        "top": 702.0,
+                                        "right": 387.0,
+                                        "bottom": 713.0
+                                    }
+                                },
+                                {
+                                    "word": "шт",
+                                    "bounding_box": {
+                                        "left": 437.0,
+                                        "top": 690.0,
+                                        "right": 461.0,
+                                        "bottom": 723.0
+                                    }
+                                },
+                                {
+                                    "word": "5",
+                                    "bounding_box": {
+                                        "left": 525.0,
+                                        "top": 702.0,
+                                        "right": 532.0,
+                                        "bottom": 713.0
+                                    }
+                                },
+                                {
+                                    "word": "3305.08",
+                                    "bounding_box": {
+                                        "left": 589.0,
+                                        "top": 690.0,
+                                        "right": 642.0,
+                                        "bottom": 723.0
+                                    }
+                                },
+                                {
+                                    "word": "16525.42]",
+                                    "bounding_box": {
+                                        "left": 708.0,
+                                        "top": 702.0,
+                                        "right": 769.0,
+                                        "bottom": 713.0
+                                    }
+                                },
+                                {
+                                    "word": "6",
+                                    "bounding_box": {
+                                        "left": 794.0,
+                                        "top": 694.0,
+                                        "right": 813.0,
+                                        "bottom": 704.0
+                                    }
+                                },
+                                {
+                                    "word": "|",
+                                    "bounding_box": {
+                                        "left": 827.0,
+                                        "top": 690.0,
+                                        "right": 839.0,
+                                        "bottom": 723.0
+                                    }
+                                },
+                                {
+                                    "word": "18%",
+                                    "bounding_box": {
+                                        "left": 858.0,
+                                        "top": 702.0,
+                                        "right": 888.0,
+                                        "bottom": 713.0
+                                    }
+                                },
+                                {
+                                    "word": "2974.58]",
+                                    "bounding_box": {
+                                        "left": 939.0,
+                                        "top": 690.0,
+                                        "right": 996.0,
+                                        "bottom": 723.0
+                                    }
+                                },
+                                {
+                                    "word": "19500.00]",
+                                    "bounding_box": {
+                                        "left": 1073.0,
+                                        "top": 702.0,
+                                        "right": 1134.0,
+                                        "bottom": 713.0
+                                    }
+                                },
+                                {
+                                    "word": "—",
+                                    "bounding_box": {
+                                        "left": 1163.0,
+                                        "top": 708.0,
+                                        "right": 1179.0,
+                                        "bottom": 709.0
+                                    }
+                                },
+                                {
+                                    "word": "-",
+                                    "bounding_box": {
+                                        "left": 1258.0,
+                                        "top": 708.0,
+                                        "right": 1270.0,
+                                        "bottom": 709.0
+                                    }
+                                },
+                                {
+                                    "word": "-",
+                                    "bounding_box": {
+                                        "left": 1406.0,
+                                        "top": 708.0,
+                                        "right": 1418.0,
+                                        "bottom": 709.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "[Всего",
+                                    "bounding_box": {
+                                        "left": 38.0,
+                                        "top": 733.0,
+                                        "right": 79.0,
+                                        "bottom": 744.0
+                                    }
+                                },
+                                {
+                                    "word": "к",
+                                    "bounding_box": {
+                                        "left": 83.0,
+                                        "top": 736.0,
+                                        "right": 92.0,
+                                        "bottom": 744.0
+                                    }
+                                },
+                                {
+                                    "word": "оплате:",
+                                    "bounding_box": {
+                                        "left": 96.0,
+                                        "top": 736.0,
+                                        "right": 143.0,
+                                        "bottom": 744.0
+                                    }
+                                },
+                                {
+                                    "word": "24322.03",
+                                    "bounding_box": {
+                                        "left": 707.0,
+                                        "top": 721.0,
+                                        "right": 769.0,
+                                        "bottom": 754.0
+                                    }
+                                },
+                                {
+                                    "word": "х",
+                                    "bounding_box": {
+                                        "left": 834.0,
+                                        "top": 733.0,
+                                        "right": 847.0,
+                                        "bottom": 744.0
+                                    }
+                                },
+                                {
+                                    "word": "4377.97",
+                                    "bounding_box": {
+                                        "left": 938.0,
+                                        "top": 721.0,
+                                        "right": 993.0,
+                                        "bottom": 754.0
+                                    }
+                                },
+                                {
+                                    "word": "28700.00]",
+                                    "bounding_box": {
+                                        "left": 1072.0,
+                                        "top": 733.0,
+                                        "right": 1134.0,
+                                        "bottom": 744.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "Руководитель",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 773.0,
+                                        "right": 150.0,
+                                        "bottom": 790.0
+                                    }
+                                },
+                                {
+                                    "word": "организации",
+                                    "bounding_box": {
+                                        "left": 155.0,
+                                        "top": 777.0,
+                                        "right": 254.0,
+                                        "bottom": 790.0
+                                    }
+                                },
+                                {
+                                    "word": "Главный",
+                                    "bounding_box": {
+                                        "left": 775.0,
+                                        "top": 773.0,
+                                        "right": 842.0,
+                                        "bottom": 786.0
+                                    }
+                                },
+                                {
+                                    "word": "бухгалтер",
+                                    "bounding_box": {
+                                        "left": 848.0,
+                                        "top": 773.0,
+                                        "right": 925.0,
+                                        "bottom": 790.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "или",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 798.0,
+                                        "right": 71.0,
+                                        "bottom": 807.0
+                                    }
+                                },
+                                {
+                                    "word": "иное",
+                                    "bounding_box": {
+                                        "left": 75.0,
+                                        "top": 798.0,
+                                        "right": 113.0,
+                                        "bottom": 807.0
+                                    }
+                                },
+                                {
+                                    "word": "уполномоченное",
+                                    "bounding_box": {
+                                        "left": 118.0,
+                                        "top": 798.0,
+                                        "right": 250.0,
+                                        "bottom": 811.0
+                                    }
+                                },
+                                {
+                                    "word": "лицо",
+                                    "bounding_box": {
+                                        "left": 255.0,
+                                        "top": 798.0,
+                                        "right": 294.0,
+                                        "bottom": 811.0
+                                    }
+                                },
+                                {
+                                    "word": "или",
+                                    "bounding_box": {
+                                        "left": 774.0,
+                                        "top": 798.0,
+                                        "right": 803.0,
+                                        "bottom": 807.0
+                                    }
+                                },
+                                {
+                                    "word": "иное",
+                                    "bounding_box": {
+                                        "left": 808.0,
+                                        "top": 798.0,
+                                        "right": 846.0,
+                                        "bottom": 807.0
+                                    }
+                                },
+                                {
+                                    "word": "уполномоченное",
+                                    "bounding_box": {
+                                        "left": 851.0,
+                                        "top": 798.0,
+                                        "right": 983.0,
+                                        "bottom": 811.0
+                                    }
+                                },
+                                {
+                                    "word": "лицо",
+                                    "bounding_box": {
+                                        "left": 988.0,
+                                        "top": 798.0,
+                                        "right": 1026.0,
+                                        "bottom": 811.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "=",
+                                    "bounding_box": {
+                                        "left": 393.0,
+                                        "top": 815.0,
+                                        "right": 431.0,
+                                        "bottom": 824.0
+                                    }
+                                },
+                                {
+                                    "word": "9",
+                                    "bounding_box": {
+                                        "left": 637.0,
+                                        "top": 815.0,
+                                        "right": 665.0,
+                                        "bottom": 824.0
+                                    }
+                                },
+                                {
+                                    "word": "ее",
+                                    "bounding_box": {
+                                        "left": 1125.0,
+                                        "top": 815.0,
+                                        "right": 1164.0,
+                                        "bottom": 824.0
+                                    }
+                                },
+                                {
+                                    "word": "9=5",
+                                    "bounding_box": {
+                                        "left": 1371.0,
+                                        "top": 815.0,
+                                        "right": 1400.0,
+                                        "bottom": 824.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "Индивидуальный",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 836.0,
+                                        "right": 180.0,
+                                        "bottom": 853.0
+                                    }
+                                },
+                                {
+                                    "word": "предприниматель",
+                                    "bounding_box": {
+                                        "left": 185.0,
+                                        "top": 840.0,
+                                        "right": 325.0,
+                                        "bottom": 853.0
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "words": [
+                                {
+                                    "word": "или",
+                                    "bounding_box": {
+                                        "left": 42.0,
+                                        "top": 861.0,
+                                        "right": 71.0,
+                                        "bottom": 870.0
+                                    }
+                                },
+                                {
+                                    "word": "иное",
+                                    "bounding_box": {
+                                        "left": 75.0,
+                                        "top": 861.0,
+                                        "right": 113.0,
+                                        "bottom": 870.0
+                                    }
+                                },
+                                {
+                                    "word": "уполномоченное",
+                                    "bounding_box": {
+                                        "left": 118.0,
+                                        "top": 861.0,
+                                        "right": 250.0,
+                                        "bottom": 874.0
+                                    }
+                                },
+                                {
+                                    "word": "лицо",
+                                    "bounding_box": {
+                                        "left": 255.0,
+                                        "top": 861.0,
+                                        "right": 294.0,
+                                        "bottom": 874.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "words": [
+                                {
+                                    "word": "“оны",
+                                    "bounding_box": {
+                                        "left": 423.0,
+                                        "top": 868.0,
+                                        "right": 465.0,
+                                        "bottom": 896.0
+                                    }
+                                },
+                                {
+                                    "word": "=",
+                                    "bounding_box": {
+                                        "left": 680.0,
+                                        "top": 879.0,
+                                        "right": 709.0,
+                                        "bottom": 888.0
+                                    }
+                                },
+                                {
+                                    "word": "присизитньстя",
+                                    "bounding_box": {
+                                        "left": 982.0,
+                                        "top": 879.0,
+                                        "right": 1026.0,
+                                        "bottom": 888.0
+                                    }
+                                },
+                                {
+                                    "word": "отосззрсванной",
+                                    "bounding_box": {
+                                        "left": 1029.0,
+                                        "top": 878.0,
+                                        "right": 1284.0,
+                                        "bottom": 888.0
+                                    }
+                                },
+                                {
+                                    "word": "резстршия",
+                                    "bounding_box": {
+                                        "left": 1164.0,
+                                        "top": 868.0,
+                                        "right": 1212.0,
+                                        "bottom": 896.0
+                                    }
+                                },
+                                {
+                                    "word": "жижвидуньяетопрдриявитени)",
+                                    "bounding_box": {
+                                        "left": 1218.0,
+                                        "top": 878.0,
+                                        "right": 1360.0,
+                                        "bottom": 888.0
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
